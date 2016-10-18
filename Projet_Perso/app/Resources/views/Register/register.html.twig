@@ -1,0 +1,50 @@
+{% extends 'Default/base.html.twig' %}
+{% block body %}
+    <img src="{{ asset('img/background.jpg') }}"
+         alt="background_image" class="background_image"/>
+    <div class="login-page">
+        <div class="form">
+            <img src="{{ asset('img/blog.jpg') }}" alt="blog" class="img_blog"/>
+
+            <form method="post">
+
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username) }}
+
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
+
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+
+                {{ form_label(form.password['first']) }}
+                {{ form_widget(form.password['first']) }}
+
+                {{ form_label(form.password['second']) }}
+                {{ form_errors(form.password['second']) }}
+                {{ form_widget(form.password['second']) }}
+
+                {{ form_row(form._token) }}
+
+                <button type="submit">login</button>
+
+            </form>
+
+            <p class="message">Déjà inscrit ? <a href="/"> Venez vous connecter, on vous attends !</a></p></div>
+    </div>
+
+    {% if not form.vars.valid %}
+        <div class="alert_error stop_li">
+            {{ form_errors(form.username) }}
+            {{ form_errors(form.name) }}
+            {{ form_errors(form.lastname) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.password['first']) }}
+            <div class="close"></div>
+        </div>
+    {% endif %}
+
+{% endblock %}

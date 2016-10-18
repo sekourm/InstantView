@@ -1,0 +1,34 @@
+{% extends 'Default/base.html.twig' %}
+
+{% block body %}
+    <img src="{{ asset('img/background.jpg') }}" alt="background_image" class="background_image"/>
+    <div class="login-page">
+        <div class="form">
+            <img src="{{ asset('img/blog.jpg') }}" alt="blog" class="img_blog"/>
+            <form action="{{ path('app_action_login') }}" method="post">
+                <input type="email" name="email" placeholder="Email"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <button type="submit">login</button>
+                <p class="message">Pas encore inscrit ? <a href="/register"> Creér un compte et rejoint nous !</a></p>
+            </form>
+        </div>
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert_success">
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+                <div class="close"></div>
+            </div>
+        {% endif %}
+        {% if app.session.flashBag.has('error') %}
+            <div class="alert_error">
+                {% for msg in app.session.flashBag.get('error') %}
+                    {{ msg }}
+                {% endfor %}
+                <div class="close"></div>
+            </div>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}
+

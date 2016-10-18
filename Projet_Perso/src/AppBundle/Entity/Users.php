@@ -1,0 +1,303 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Users
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UsersRepository")
+ * @UniqueEntity(fields={"email"}, message="Email est déjà utilisée")
+ * @UniqueEntity(fields={"username"}, message="Username est déjà utilisé")
+ */
+
+class Users
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     */
+    private $id;
+
+    /**
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "Username minimum: {{ limit }} characters",
+     *      maxMessage = "Username maximum: {{ limit }} characters"
+     * )
+     *
+     * @ORM\Column(name="username", type="string" , length=50, unique=true)
+     */
+    private $username;
+
+    /**
+     *
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 15,
+     *      minMessage = "Prénom minimum {{ limit }} characters",
+     *      maxMessage = "Prénom maximum {{ limit }} characters"
+     * )
+     *
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+    /**
+     *
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 15,
+     *      minMessage = "Nom minimum {{ limit }} characters",
+     *      maxMessage = "Nom maximum {{ limit }} characters"
+     * )
+     *
+     * @ORM\Column(name="lastname", type="string")
+     */
+    private $lastname;
+
+    /**
+     *
+     * @Assert\Length(
+     *      min = 6,
+     *      minMessage = "Mot de passe minimum {{ limit }} characters",
+     * )
+     *
+     * @ORM\Column(name="password", type="string")
+     */
+    private $password;
+
+    /**
+     *
+     * @Assert\Email(
+     *     message = "Cette email : '{{ value }}' n'est pas une adresse email valide.",
+     *     checkMX = true
+     * )
+     *
+     *
+     * @ORM\Column(name="email", type="string", unique=true)
+     */
+    private $email;
+
+    /**
+     *
+     * @ORM\Column(name="salt", type="string")
+     */
+
+    private $salt;
+
+    /**
+     * @ORM\Column(name="active", type="boolean")
+     */
+
+    private $active;
+
+    /**
+     * @ORM\Column(name="private_key", type="string")
+     */
+
+    private $private_key;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Users
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Users
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Users
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return Users
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Users
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Users
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return Users
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set private_key
+     *
+     * @param string $privateKey
+     * @return Users
+     */
+    public function setPrivateKey($privateKey)
+    {
+        $this->private_key = $privateKey;
+
+        return $this;
+    }
+
+    /**
+     * Get private_key
+     *
+     * @return string 
+     */
+    public function getPrivateKey()
+    {
+        return $this->private_key;
+    }
+}

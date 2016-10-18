@@ -1,0 +1,19 @@
+app_login:
+  path : /
+  defaults:  { _controller: AppBundle:Login:Login }
+
+app_action_login:
+  path : /login/action
+  defaults:  { _controller: AppBundle:Login:Action_Login }
+
+app_register:
+  path : /register
+  defaults:  { _controller: AppBundle:Register:Register }
+
+app_confirmed_register:
+  path : /confirmation/account/{user_id}/{private_key}
+  defaults:  { _controller: AppBundle:Confirmed:Confirmed }
+
+app_index_site:
+  path : /index
+  defaults:  { _controller: AppBundle:Article:Index }
