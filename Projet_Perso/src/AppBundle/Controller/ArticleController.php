@@ -16,12 +16,12 @@ class ArticleController extends Controller
 {
     public function IndexAction(Request $request)
     {
-        // $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
         // l'utilisateur et tout les articles //
-        /*$user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => 67));
-        $result = $user->getArticles()->getValues();*/
-        //dump($result);exit;
+        $user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => 67));
+        $result = $user->getArticles()->getValues();
+        dump($result);exit;
 
         // l'article avec l'utilisateur //
         /*$user = $em->getRepository('AppBundle:Articles')->findOneBy(array('id' => 1));
@@ -29,6 +29,6 @@ class ArticleController extends Controller
         dump($user->getContent());
         exit;*/
 
-        // return $this->render('Content/index.html.twig', array('result' => $result));
+        //return $this->render('Content/index.html.twig', array('result' => $result));
     }
 }

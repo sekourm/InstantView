@@ -27,7 +27,7 @@ class Users
      *
      */
     private $id;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Articles", mappedBy="users")
      */
