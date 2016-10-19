@@ -1,0 +1,8 @@
+{% extends 'Default/base.html.twig' %}
+
+{% block body %}
+    {% for user in result %}
+        <li>{{ user.Users.username }}</li>
+        <li>{{ user.content }}</li>
+    {% endfor %}
+{% endblock %}
