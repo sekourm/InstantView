@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use \Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Users
@@ -26,6 +27,11 @@ class Users
      *
      */
     private $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Articles", mappedBy="users")
+     */
+    private $articles;
 
     /**
      * @Assert\Length(
@@ -299,5 +305,45 @@ class Users
     public function getPrivateKey()
     {
         return $this->private_key;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \AppBundle\Entity\Articles $articles
+     * @return Users
+     */
+    public function addArticle(\AppBundle\Entity\Articles $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \AppBundle\Entity\Articles $articles
+     */
+    public function removeArticle(\AppBundle\Entity\Articles $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

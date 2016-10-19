@@ -22,10 +22,10 @@ class Articles
     private $id;
 
     /**
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="articles")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=false)
      */
-
-    private $user_id;
+    private $users;
 
     /**
      * @ORM\Column(name="content", type="string")
@@ -88,5 +88,28 @@ class Articles
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return Articles
+     */
+    public function setUsers(\AppBundle\Entity\Users $users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
