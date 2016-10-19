@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46696636-4e64-41a0-b6b9-99a2a8a8cdbc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/0f/5b5b435d41707042756e646c655c456e746974795c41727469636c657324636f6e74656e74405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/0f/5b5b435d41707042756e646c655c456e746974795c41727469636c657324636f6e74656e74405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/17/5b5b435d41707042756e646c655c456e746974795c41727469636c6573246964405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/17/5b5b435d41707042756e646c655c456e746974795c41727469636c6573246964405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/21/5b5b435d41707042756e646c655c456e746974795c41727469636c6573405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/21/5b5b435d41707042756e646c655c456e746974795c41727469636c6573405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/2a/5b5b435d41707042756e646c655c456e746974795c55736572732461727469636c6573405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/2a/5b5b435d41707042756e646c655c456e746974795c55736572732461727469636c6573405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/2f/5b5b435d41707042756e646c655c436f6e74726f6c6c65725c41727469636c65436f6e74726f6c6c6572405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/2f/5b5b435d41707042756e646c655c436f6e74726f6c6c65725c41727469636c65436f6e74726f6c6c6572405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/44/5b5b435d41707042756e646c655c456e746974795c557365727324656d61696c405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/44/5b5b435d41707042756e646c655c456e746974795c557365727324656d61696c405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/45/5b5b435d41707042756e646c655c456e746974795c5573657273246964405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/45/5b5b435d41707042756e646c655c456e746974795c5573657273246964405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/5e/5b5b435d41707042756e646c655c456e746974795c557365727324616374697665405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/5e/5b5b435d41707042756e646c655c456e746974795c557365727324616374697665405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/69/5b5b435d41707042756e646c655c456e746974795c55736572732473616c74405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/69/5b5b435d41707042756e646c655c456e746974795c55736572732473616c74405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/70/5b5b435d41707042756e646c655c456e746974795c41727469636c6573247573657273405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/70/5b5b435d41707042756e646c655c456e746974795c41727469636c6573247573657273405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/88/5b5b435d41707042756e646c655c456e746974795c5573657273246e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/88/5b5b435d41707042756e646c655c456e746974795c5573657273246e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/8f/5b5b435d41707042756e646c655c436f6e74726f6c6c65725c41727469636c65436f6e74726f6c6c657223496e646578416374696f6e405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/8f/5b5b435d41707042756e646c655c436f6e74726f6c6c65725c41727469636c65436f6e74726f6c6c657223496e646578416374696f6e405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/8f/5b5b435d41707042756e646c655c456e746974795c5573657273246c6173746e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/8f/5b5b435d41707042756e646c655c456e746974795c5573657273246c6173746e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/a5/5b5b435d41707042756e646c655c456e746974795c557365727324757365726e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/a5/5b5b435d41707042756e646c655c456e746974795c557365727324757365726e616d65405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/b8/5b5b435d41707042756e646c655c456e746974795c5573657273405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/b8/5b5b435d41707042756e646c655c456e746974795c5573657273405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/c2/5b5b435d41707042756e646c655c456e746974795c557365727324707269766174655f6b6579405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/c2/5b5b435d41707042756e646c655c456e746974795c557365727324707269766174655f6b6579405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/f7/5b5b435d41707042756e646c655c456e746974795c55736572732470617373776f7264405b416e6e6f745d5d5b315d.doctrinecache.data" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/annotations/f7/5b5b435d41707042756e646c655c456e746974795c55736572732470617373776f7264405b416e6e6f745d5d5b315d.doctrinecache.data" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/profiler/index.csv" afterPath="$PROJECT_DIR$/Projet_Perso/app/cache/dev/profiler/index.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/app/logs/dev.log" afterPath="$PROJECT_DIR$/Projet_Perso/app/logs/dev.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/src/AppBundle/Controller/ArticleController.php" afterPath="$PROJECT_DIR$/Projet_Perso/src/AppBundle/Controller/ArticleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projet_Perso/src/AppBundle/Entity/Users.php" afterPath="$PROJECT_DIR$/Projet_Perso/src/AppBundle/Entity/Users.php" />
-    </list>
+    <list default="true" id="46696636-4e64-41a0-b6b9-99a2a8a8cdbc" name="Default" comment="" />
     <ignored path="InstantView.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -57,8 +34,8 @@
       <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Projet_Perso/src/AppBundle/Controller/ArticleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+            <state relative-caret-position="522">
+              <caret line="29" column="15" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
               <folding>
                 <element signature="e#40#67#0#PHP" expanded="true" />
               </folding>
@@ -417,12 +394,12 @@
       <option name="presentableId" value="Default" />
       <updated>1476786180491</updated>
       <workItem from="1476786183117" duration="153000" />
-      <workItem from="1476861516773" duration="15408000" />
+      <workItem from="1476861516773" duration="15572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15561000" />
+    <option name="totallyTimeSpent" value="15725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="993" extended-state="6" />
@@ -556,8 +533,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Projet_Perso/src/AppBundle/Controller/ArticleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+        <state relative-caret-position="522">
+          <caret line="29" column="15" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
           <folding>
             <element signature="e#40#67#0#PHP" expanded="true" />
           </folding>
