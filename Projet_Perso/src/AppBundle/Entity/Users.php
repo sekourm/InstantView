@@ -34,6 +34,65 @@ class Users
     private $articles;
 
     /**
+     * @ORM\OneToMany(targetEntity="Album_profil", mappedBy="users")
+     */
+    private $album_profil;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Album_couverture", mappedBy="users")
+     */
+    private $album_couverture;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Photos", mappedBy="photo")
+     */
+
+    private $user_photo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Friends", mappedBy="user_friend_one")
+     */
+    private $friend_one;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Friends", mappedBy="user_friend_two")
+     */
+    private $friend_two;
+
+
+
+
+
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     */
+    private $sender;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     */
+    private $recever;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     *
      * @Assert\Length(
      *      min = 4,
      *      max = 50,
@@ -292,7 +351,7 @@ class Users
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -315,7 +374,7 @@ class Users
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -338,7 +397,7 @@ class Users
     /**
      * Get private_key
      *
-     * @return string 
+     * @return string
      */
     public function getPrivateKey()
     {
@@ -378,7 +437,7 @@ class Users
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
@@ -401,7 +460,7 @@ class Users
     /**
      * Get role
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRole()
     {
@@ -424,7 +483,7 @@ class Users
     /**
      * Get is_connect
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsConnect()
     {
@@ -447,7 +506,7 @@ class Users
     /**
      * Get last_connexion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastConnexion()
     {
@@ -470,7 +529,7 @@ class Users
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -493,10 +552,231 @@ class Users
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+
+    /**
+     * Add album_profil
+     *
+     * @param \AppBundle\Entity\Album_profil $albumProfil
+     * @return Users
+     */
+    public function addAlbumProfil(\AppBundle\Entity\Album_profil $albumProfil)
+    {
+        $this->album_profil[] = $albumProfil;
+
+        return $this;
+    }
+
+    /**
+     * Remove album_profil
+     *
+     * @param \AppBundle\Entity\Album_profil $albumProfil
+     */
+    public function removeAlbumProfil(\AppBundle\Entity\Album_profil $albumProfil)
+    {
+        $this->album_profil->removeElement($albumProfil);
+    }
+
+    /**
+     * Get album_profil
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlbumProfil()
+    {
+        return $this->album_profil;
+    }
+
+    /**
+     * Add album_couverture
+     *
+     * @param \AppBundle\Entity\Album_couverture $albumCouverture
+     * @return Users
+     */
+    public function addAlbumCouverture(\AppBundle\Entity\Album_couverture $albumCouverture)
+    {
+        $this->album_couverture[] = $albumCouverture;
+
+        return $this;
+    }
+
+    /**
+     * Remove album_couverture
+     *
+     * @param \AppBundle\Entity\Album_couverture $albumCouverture
+     */
+    public function removeAlbumCouverture(\AppBundle\Entity\Album_couverture $albumCouverture)
+    {
+        $this->album_couverture->removeElement($albumCouverture);
+    }
+
+    /**
+     * Get album_couverture
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlbumCouverture()
+    {
+        return $this->album_couverture;
+    }
+
+    /**
+     * Set user_photo
+     *
+     * @param \AppBundle\Entity\Photos $userPhoto
+     * @return Users
+     */
+    public function setUserPhoto(\AppBundle\Entity\Photos $userPhoto = null)
+    {
+        $this->user_photo = $userPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get user_photo
+     *
+     * @return \AppBundle\Entity\Photos
+     */
+    public function getUserPhoto()
+    {
+        return $this->user_photo;
+    }
+
+    /**
+     * Add friend_one
+     *
+     * @param \AppBundle\Entity\Friends $friendOne
+     * @return Users
+     */
+    public function addFriendOne(\AppBundle\Entity\Friends $friendOne)
+    {
+        $this->friend_one[] = $friendOne;
+
+        return $this;
+    }
+
+    /**
+     * Remove friend_one
+     *
+     * @param \AppBundle\Entity\Friends $friendOne
+     */
+    public function removeFriendOne(\AppBundle\Entity\Friends $friendOne)
+    {
+        $this->friend_one->removeElement($friendOne);
+    }
+
+    /**
+     * Get friend_one
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFriendOne()
+    {
+        return $this->friend_one;
+    }
+
+    /**
+     * Add friend_two
+     *
+     * @param \AppBundle\Entity\Friends $friendTwo
+     * @return Users
+     */
+    public function addFriendTwo(\AppBundle\Entity\Friends $friendTwo)
+    {
+        $this->friend_two[] = $friendTwo;
+
+        return $this;
+    }
+
+    /**
+     * Remove friend_two
+     *
+     * @param \AppBundle\Entity\Friends $friendTwo
+     */
+    public function removeFriendTwo(\AppBundle\Entity\Friends $friendTwo)
+    {
+        $this->friend_two->removeElement($friendTwo);
+    }
+
+    /**
+     * Get friend_two
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFriendTwo()
+    {
+        return $this->friend_two;
+    }
+
+    /**
+     * Add sender
+     *
+     * @param \AppBundle\Entity\Invitations $sender
+     * @return Users
+     */
+    public function addSender(\AppBundle\Entity\Invitations $sender)
+    {
+        $this->sender[] = $sender;
+
+        return $this;
+    }
+
+    /**
+     * Remove sender
+     *
+     * @param \AppBundle\Entity\Invitations $sender
+     */
+    public function removeSender(\AppBundle\Entity\Invitations $sender)
+    {
+        $this->sender->removeElement($sender);
+    }
+
+    /**
+     * Get sender
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * Add recever
+     *
+     * @param \AppBundle\Entity\Invitations $recever
+     * @return Users
+     */
+    public function addRecever(\AppBundle\Entity\Invitations $recever)
+    {
+        $this->recever[] = $recever;
+
+        return $this;
+    }
+
+    /**
+     * Remove recever
+     *
+     * @param \AppBundle\Entity\Invitations $recever
+     */
+    public function removeRecever(\AppBundle\Entity\Invitations $recever)
+    {
+        $this->recever->removeElement($recever);
+    }
+
+    /**
+     * Get recever
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecever()
+    {
+        return $this->recever;
     }
 }
