@@ -28,33 +28,10 @@ class Users
      */
     private $id;
 
-
-
-
-
-
-
-
     /**
      * @ORM\OneToMany(targetEntity="Articles", mappedBy="users")
      */
     private $articles;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * @Assert\Length(
@@ -123,6 +100,44 @@ class Users
      */
 
     private $salt;
+
+
+
+    /**
+     *
+     * @ORM\Column(name="role", type="boolean")
+     */
+
+    private $role;
+
+
+
+    /**
+     *
+     * @ORM\Column(name="is_connect", type="boolean")
+     */
+
+    private $is_connect;
+
+
+
+    /**
+     * @ORM\Column(name="last_connexion", type="datetime")
+     */
+
+    private $last_connexion;
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+
+    private $created_at;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+
+    private $updated_at;
 
     /**
      * @ORM\Column(name="active", type="boolean")

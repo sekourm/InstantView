@@ -21,38 +21,57 @@ class Articles
      */
     private $id;
 
-
-
-
-
-
-
-
     /**
      * @ORM\ManyToOne(targetEntity="Users", inversedBy="articles")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=false)
      */
     private $users;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @ORM\Column(name="content", type="string")
      */
 
     private $content;
+
+
+    /**
+     * @ORM\Column(name="title", type="string")
+     */
+
+    private $title;
+
+    /**
+     * @ORM\Column(name="time", type="datetime")
+     */
+
+    private $time;
+
+    /**
+     * @ORM\Column(name="type", type="string")
+     */
+
+    private $type;
+
+    /**
+     * @ORM\Column(name="active", type="boolean")
+     */
+
+    private $active;
+
+
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+
+    private $created_at;
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+
+    private $updated_at;
 
 
     /**

@@ -101,6 +101,44 @@ class Users
 
     private $salt;
 
+
+
+    /**
+     *
+     * @ORM\Column(name="role", type="boolean")
+     */
+
+    private $role;
+
+
+
+    /**
+     *
+     * @ORM\Column(name="is_connect", type="boolean")
+     */
+
+    private $is_connect;
+
+
+
+    /**
+     * @ORM\Column(name="last_connexion", type="datetime")
+     */
+
+    private $last_connexion;
+
+    /**
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+
+    private $created_at;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+
+    private $updated_at;
+
     /**
      * @ORM\Column(name="active", type="boolean")
      */
@@ -345,5 +383,120 @@ class Users
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * Set role
+     *
+     * @param boolean $role
+     * @return Users
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return boolean 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set is_connect
+     *
+     * @param boolean $isConnect
+     * @return Users
+     */
+    public function setIsConnect($isConnect)
+    {
+        $this->is_connect = $isConnect;
+
+        return $this;
+    }
+
+    /**
+     * Get is_connect
+     *
+     * @return boolean 
+     */
+    public function getIsConnect()
+    {
+        return $this->is_connect;
+    }
+
+    /**
+     * Set last_connexion
+     *
+     * @param \DateTime $lastConnexion
+     * @return Users
+     */
+    public function setLastConnexion($lastConnexion)
+    {
+        $this->last_connexion = $lastConnexion;
+
+        return $this;
+    }
+
+    /**
+     * Get last_connexion
+     *
+     * @return \DateTime 
+     */
+    public function getLastConnexion()
+    {
+        return $this->last_connexion;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Users
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return Users
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
     }
 }
