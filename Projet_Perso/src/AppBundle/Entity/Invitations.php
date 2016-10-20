@@ -22,14 +22,16 @@ class Invitations
     private $id;
 
     /**
-     * @ORM\Column(name="sender", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="sender")
+     * @ORM\JoinColumn(name="user_invit_sender",referencedColumnName="id", nullable=false)
      */
-    private $sender;
+    private $user_invit_sender;
 
     /**
-     * @ORM\Column(name="recever", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="recever")
+     * @ORM\JoinColumn(name="user_invit_recever",referencedColumnName="id", nullable=false)
      */
-    private $recever;
+    private $user_invit_recever;
 
     /**
      * @ORM\Column(name="response", type="text", length=20 )
@@ -39,7 +41,7 @@ class Invitations
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +64,7 @@ class Invitations
     /**
      * Get sender
      *
-     * @return integer 
+     * @return integer
      */
     public function getSender()
     {
@@ -85,7 +87,7 @@ class Invitations
     /**
      * Get recever
      *
-     * @return integer 
+     * @return integer
      */
     public function getRecever()
     {
@@ -108,10 +110,56 @@ class Invitations
     /**
      * Get response
      *
-     * @return string 
+     * @return string
      */
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * Set user_invit_sender
+     *
+     * @param \AppBundle\Entity\Users $userInvitSender
+     * @return Invitations
+     */
+    public function setUserInvitSender(\AppBundle\Entity\Users $userInvitSender)
+    {
+        $this->user_invit_sender = $userInvitSender;
+
+        return $this;
+    }
+
+    /**
+     * Get user_invit_sender
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserInvitSender()
+    {
+        return $this->user_invit_sender;
+    }
+
+    /**
+     * Set user_invit_recever
+     *
+     * @param \AppBundle\Entity\Users $userInvitRecever
+     * @return Invitations
+     */
+    public function setUserInvitRecever(\AppBundle\Entity\Users $userInvitRecever)
+    {
+        $this->user_invit_recever = $userInvitRecever;
+
+        return $this;
+    }
+
+    /**
+     * Get user_invit_recever
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserInvitRecever()
+    {
+        return $this->user_invit_recever;
     }
 }

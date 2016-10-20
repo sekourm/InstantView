@@ -22,21 +22,16 @@ class Friends
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="friend_one", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="friend_one")
+     * @ORM\JoinColumn(name="user_friend_one",referencedColumnName="id", nullable=false)
      */
-    private $friendOne;
-
-
-
+    private $user_friend_one;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="friend_two", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="friend_two")
+     * @ORM\JoinColumn(name="user_friend_two",referencedColumnName="id", nullable=false)
      */
-    private $friendTwo;
+    private $user_friend_two;
 
 
     /**
@@ -93,5 +88,51 @@ class Friends
     public function getFriendTwo()
     {
         return $this->friendTwo;
+    }
+
+    /**
+     * Set user_friend_one
+     *
+     * @param \AppBundle\Entity\Users $userFriendOne
+     * @return Friends
+     */
+    public function setUserFriendOne(\AppBundle\Entity\Users $userFriendOne)
+    {
+        $this->user_friend_one = $userFriendOne;
+
+        return $this;
+    }
+
+    /**
+     * Get user_friend_one
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserFriendOne()
+    {
+        return $this->user_friend_one;
+    }
+
+    /**
+     * Set user_friend_two
+     *
+     * @param \AppBundle\Entity\Users $userFriendTwo
+     * @return Friends
+     */
+    public function setUserFriendTwo(\AppBundle\Entity\Users $userFriendTwo)
+    {
+        $this->user_friend_two = $userFriendTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get user_friend_two
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserFriendTwo()
+    {
+        return $this->user_friend_two;
     }
 }

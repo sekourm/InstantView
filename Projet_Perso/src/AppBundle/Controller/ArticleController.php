@@ -19,9 +19,9 @@ class ArticleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // l'utilisateur et tout les articles //
-        $user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => 67));
+        /*$user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => 67));
         $result = $user->getArticles()->getValues();
-        dump($result);exit;
+        dump($result);exit;*/
 
         // l'article avec l'utilisateur //
         /*$user = $em->getRepository('AppBundle:Articles')->findOneBy(array('id' => 1));
@@ -29,6 +29,22 @@ class ArticleController extends Controller
         dump($user->getContent());
         exit;*/
 
+        /// ONE TO ONE //
+        /*$user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => 67));
+        $result = $user->getUserPhoto();
+        dump($result);exit;*/
+
         //return $this->render('Content/index.html.twig', array('result' => $result));
+
+        /*$user = $em->getRepository('AppBundle:Friends')->findOneBy(array('id' => 1));
+        $result = $user->getUserFriendOne()->getUsername();
+        dump($result);
+        exit;*/
+
+        /*$user = $em->getRepository('AppBundle:Invitations')->findOneBy(array('id' => 1));
+        $result = $user->getUserInvitSender()->getUsername();
+        dump($result);
+        exit;*/
+
     }
 }

@@ -32,9 +32,11 @@ class Photos
     private $couverture;
 
     /**
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\OneToOne(targetEntity="Users", inversedBy="user_photo")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=false)
      */
-    private $user_id;
+
+    private $photo;
 
     /**
      * Get id
@@ -113,5 +115,51 @@ class Photos
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param \AppBundle\Entity\Users $photo
+     * @return Photos
+     */
+    public function setPhoto(\AppBundle\Entity\Users $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set user_photo
+     *
+     * @param \AppBundle\Entity\Users $userPhoto
+     * @return Photos
+     */
+    public function setUserPhoto(\AppBundle\Entity\Users $userPhoto = null)
+    {
+        $this->user_photo = $userPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get user_photo
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserPhoto()
+    {
+        return $this->user_photo;
     }
 }

@@ -15,8 +15,8 @@ class __TwigTemplate_099cb12986ef1d0842663704593dab926446c793278a324346c29834828
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_e924b262435f99d5894af24c61c6db3ce42a64bafbddd162037d5609117eb7b9 = $this->env->getExtension("native_profiler");
-        $__internal_e924b262435f99d5894af24c61c6db3ce42a64bafbddd162037d5609117eb7b9->enter($__internal_e924b262435f99d5894af24c61c6db3ce42a64bafbddd162037d5609117eb7b9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":Emails:registration.html.twig"));
+        $__internal_49f09d97fd470df91f9f755e803cdc5790246dc3c7b7593869bad6db242b1b60 = $this->env->getExtension("native_profiler");
+        $__internal_49f09d97fd470df91f9f755e803cdc5790246dc3c7b7593869bad6db242b1b60->enter($__internal_49f09d97fd470df91f9f755e803cdc5790246dc3c7b7593869bad6db242b1b60_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", ":Emails:registration.html.twig"));
 
         // line 1
         echo "<!DOCTYPE html>
@@ -418,7 +418,7 @@ class __TwigTemplate_099cb12986ef1d0842663704593dab926446c793278a324346c29834828
 </body>
 </html>";
         
-        $__internal_e924b262435f99d5894af24c61c6db3ce42a64bafbddd162037d5609117eb7b9->leave($__internal_e924b262435f99d5894af24c61c6db3ce42a64bafbddd162037d5609117eb7b9_prof);
+        $__internal_49f09d97fd470df91f9f755e803cdc5790246dc3c7b7593869bad6db242b1b60->leave($__internal_49f09d97fd470df91f9f755e803cdc5790246dc3c7b7593869bad6db242b1b60_prof);
 
     }
 

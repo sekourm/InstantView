@@ -22,9 +22,10 @@ class Album_profil
     private $id;
 
     /**
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Users", inversedBy="album_profil")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id", nullable=false)
      */
-    private $user_id;
+    private $users;
 
     /**
      * @ORM\Column(name="photo", type="text", length=4294967295)
@@ -141,5 +142,28 @@ class Album_profil
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return Album_profil
+     */
+    public function setUsers(\AppBundle\Entity\Users $users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
