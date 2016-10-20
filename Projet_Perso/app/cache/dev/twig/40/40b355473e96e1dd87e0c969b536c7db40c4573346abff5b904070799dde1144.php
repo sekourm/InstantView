@@ -15,8 +15,8 @@ class __TwigTemplate_2e1a7cc2b0d353ac89e6c541d9c379a73ecd19b36b458d8b609cb76dacc
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_aa5d56ee22c6d23d8e92030b8e07fa24d76aae5f24314d6014e50c5b25ba5576 = $this->env->getExtension("native_profiler");
-        $__internal_aa5d56ee22c6d23d8e92030b8e07fa24d76aae5f24314d6014e50c5b25ba5576->enter($__internal_aa5d56ee22c6d23d8e92030b8e07fa24d76aae5f24314d6014e50c5b25ba5576_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/radio_widget.html.php"));
+        $__internal_cf8f48c81d6b14d0625d22feb488fdedee95aae6f89d70aeae7687c9e4d10fc6 = $this->env->getExtension("native_profiler");
+        $__internal_cf8f48c81d6b14d0625d22feb488fdedee95aae6f89d70aeae7687c9e4d10fc6->enter($__internal_cf8f48c81d6b14d0625d22feb488fdedee95aae6f89d70aeae7687c9e4d10fc6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "@Framework/Form/radio_widget.html.php"));
 
         // line 1
         echo "<input type=\"radio\"
@@ -26,7 +26,7 @@ class __TwigTemplate_2e1a7cc2b0d353ac89e6c541d9c379a73ecd19b36b458d8b609cb76dacc
 />
 ";
         
-        $__internal_aa5d56ee22c6d23d8e92030b8e07fa24d76aae5f24314d6014e50c5b25ba5576->leave($__internal_aa5d56ee22c6d23d8e92030b8e07fa24d76aae5f24314d6014e50c5b25ba5576_prof);
+        $__internal_cf8f48c81d6b14d0625d22feb488fdedee95aae6f89d70aeae7687c9e4d10fc6->leave($__internal_cf8f48c81d6b14d0625d22feb488fdedee95aae6f89d70aeae7687c9e4d10fc6_prof);
 
     }
 
