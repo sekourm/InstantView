@@ -1,0 +1,97 @@
+{% extends 'Default/base.html.twig' %}
+{% block body %}
+    {% block nav %}
+        {% include '/Nav/nav.html.twig' %}
+    {% endblock %}
+    <div class="content">
+        <div class="profil_couverture">
+            <img src="{{ asset('img/couverture_default.jpg') }}" alt="profil couverture"/>
+            <div class="profile_image">
+                <img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/>
+            </div>
+            <div class="name_user">
+                Rémi Boutonpie
+            </div>
+        </div>
+        <div class="menu_profile">
+            <ul>
+                <li><a href="#">Amies</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">Amies</a></li>
+                <li><a href="#">Photos</a></li>
+            </ul>
+        </div>
+        <div class="mur_user">
+            <div class="info_user_mur">
+                info user
+            </div>
+            <div class="publication">
+                <div class="post">
+                    <form id="enquiry" action="">
+                        <div class="upload">
+                            <ul>
+                                <li><a href="#"><img src="{{ asset('img/photo.png') }}" alt="profil image"/></a>
+                                </li>
+                                <li><a href="#"><img src="{{ asset('img/video.png') }}" alt="profil image"/></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <textarea maxlength="140" name="message" id="message"
+                                  placeholder="Poster une publication :)"></textarea>
+                        <input type="submit" value="Publier">
+                    </form>
+                </div>
+                <div class="on_my_mur">
+                    <div class="each_post">
+                        <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
+                                         class="each_post_img"/></a>
+                        <div class="name_in_post">
+                            Rémi Boutonpie
+                        </div>
+                        <div class="date_in_post">
+                            Publié le 10/06/2016
+                        </div>
+                        <div class="text_in_post">
+                            vite il faut que vous voyez ceci c'est trop drole sa va disparaitre.
+                        </div>
+                        <div class="img_in_post">
+                            <a href="#"><img src="{{ asset('img/couverture_default.jpg') }}" alt="profil image"/></a>
+                        </div>
+                    </div>
+                    <div class="each_post">
+                        <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
+                                         class="each_post_img"/></a>
+                        <div class="name_in_post">
+                            Rémi Boutonpie
+                        </div>
+                        <div class="date_in_post">
+                            Publié le 10/06/2016
+                        </div>
+                        <div class="text_in_post">
+                            vite il faut que vous voyez ceci c'est trop drole sa va disparaitre.
+                        </div>
+                        <div class="img_in_post">
+                            <a href="#"><img src="{{ asset('img/couverture_default.jpg') }}" alt="profil image"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list_amie_mur">
+                <div class="number_amie">
+                    <p> 90 Amies </p>
+                </div>
+                <ul>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                </ul>
+            </div>
+            <div class="preview_publication">
+                preview publication 10
+            </div>
+        </div>
+    </div>
+{% endblock %}
