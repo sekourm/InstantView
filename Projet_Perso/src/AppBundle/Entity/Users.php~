@@ -44,7 +44,7 @@ class Users
     private $album_couverture;
 
     /**
-     * @ORM\OneToOne(targetEntity="Photos", mappedBy="photo")
+     * @ORM\OneToMany(targetEntity="Photos", mappedBy="photo")
      */
 
     private $user_photo;
