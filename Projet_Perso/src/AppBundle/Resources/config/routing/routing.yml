@@ -17,6 +17,10 @@ app_confirmed_register:
 
 app_index_site:
   path : /index
+  defaults:  { _controller: AppBundle:Profile:Show }
+
+app_index_site:
+  path : /mur
   defaults:  { _controller: AppBundle:Article:Index }
 
 app_action_disconnect:
