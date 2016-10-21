@@ -1,8 +1,13 @@
 {% extends 'Default/base.html.twig' %}
-
 {% block body %}
-    {% for user in result %}
-        <li>{{ user.Users.username }}</li>
-        <li>{{ user.content }}</li>
-    {% endfor %}
+   <a href="{{ path('app_action_disconnect') }}">Logout</a>
+   <h1>Adding a new product</h1>
+   <form method="post" {{form_enctype (form)}}>
+   
+     {{ form_label(form.profil) }}
+     {{ form_widget(form.profil) }}
+      {{ form_row(form._token) }}
+
+                <button type="submit">login</button>
+</form>
 {% endblock %}

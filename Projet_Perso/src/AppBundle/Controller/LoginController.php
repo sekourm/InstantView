@@ -65,7 +65,7 @@ class LoginController extends Controller
              * if the user is valide, start the session and redirect
              */
 
-            if ($user[0]->getActive() == 'true') {
+            if ($user[0]->getActive() == 'true' && $user[0]->getRole() == '0') {
                 $session = $request->getSession();
                 $session->start();
                 $session->set('user_id', $user[0]->getId());
@@ -90,6 +90,15 @@ class LoginController extends Controller
 
         $request->getSession()->getFlashBag()->add("error", "Verifiez vos identifiants.");
         $url = $this->generateUrl('app_login');
+        return $this->redirect($url);
+    }
+
+
+    public function Disconnect_LoginAction(Request $request){
+
+        $session = $request->getSession();
+        $session->remove('user_id');
+         $url = $this->generateUrl('app_login');
         return $this->redirect($url);
     }
 }

@@ -116,4 +116,50 @@ class Invitations
     {
         return $this->response;
     }
+
+    /**
+     * Set user_invit_sender
+     *
+     * @param \AppBundle\Entity\Users $userInvitSender
+     * @return Invitations
+     */
+    public function setUserInvitSender(\AppBundle\Entity\Users $userInvitSender)
+    {
+        $this->user_invit_sender = $userInvitSender;
+
+        return $this;
+    }
+
+    /**
+     * Get user_invit_sender
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserInvitSender()
+    {
+        return $this->user_invit_sender;
+    }
+
+    /**
+     * Set user_invit_recever
+     *
+     * @param \AppBundle\Entity\Users $userInvitRecever
+     * @return Invitations
+     */
+    public function setUserInvitRecever(\AppBundle\Entity\Users $userInvitRecever)
+    {
+        $this->user_invit_recever = $userInvitRecever;
+
+        return $this;
+    }
+
+    /**
+     * Get user_invit_recever
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUserInvitRecever()
+    {
+        return $this->user_invit_recever;
+    }
 }

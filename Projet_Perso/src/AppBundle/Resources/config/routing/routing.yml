@@ -6,6 +6,7 @@ app_action_login:
   path : /login/action
   defaults:  { _controller: AppBundle:Login:Action_Login }
 
+
 app_register:
   path : /register
   defaults:  { _controller: AppBundle:Register:Register }
@@ -17,3 +18,15 @@ app_confirmed_register:
 app_index_site:
   path : /index
   defaults:  { _controller: AppBundle:Profile:Show }
+
+app_index_site:
+  path : /mur
+  defaults:  { _controller: AppBundle:Article:Index }
+
+app_action_disconnect:
+  path : /disconnect
+  defaults:  { _controller: AppBundle:Login:Disconnect_Login }
+
+app_action_update_profil:
+  path : /changeProfil/action
+  defaults:  { _controller: AppBundle:Article:Addphoto }

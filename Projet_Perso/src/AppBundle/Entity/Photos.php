@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Photos
  *
@@ -23,6 +23,8 @@ class Photos
 
     /**
      * @ORM\Column(name="profil", type="text", length=4294967295)
+     * @Assert\NotBlank(message="Please, upload the profil picture as a jpg/png file.")
+     * @Assert\File( maxSize = "1024k", mimeTypesMessage = "Please upload a valid Image")
      */
     private $profil;
 
@@ -54,7 +56,7 @@ class Photos
      * @param \longtext $profil
      * @return Photos
      */
-    public function setProfil(\longtext $profil)
+    public function setProfil($profil)
     {
         $this->profil = $profil;
 
@@ -77,7 +79,7 @@ class Photos
      * @param \longtext $couverture
      * @return Photos
      */
-    public function setCouverture(\longtext $couverture)
+    public function setCouverture($couverture)
     {
         $this->couverture = $couverture;
 

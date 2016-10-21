@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Users;
+use AppBundle\Entity\Photos;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,15 +23,16 @@ class RegisterController extends Controller
          */
 
         $users = new Users();
+        $photographie = new Photos();
         $form = $this->createFormBuilder($users)
-            ->add('username', TextType::class, array('attr' => array('placeholder' => 'Username'), 'label' => false))
-            ->add('lastname', TextType::class, array('attr' => array('placeholder' => 'Nom'), 'label' => false))
-            ->add('name', TextType::class, array('attr' => array('placeholder' => 'Prenom'), 'label' => false))
-            ->add('password', RepeatedType::class, array('type' => 'password', 'first_options' => array('attr' => array('placeholder' => 'Password'), 'label' => false),
-                'second_options' => array('label' => false, 'attr' => array('placeholder' => 'Confirmed password')), 'invalid_message' => 'Confirmation de mot de passe incorrect',))
-            ->add('email', EmailType::class, array('label' => false, 'attr' => array('placeholder' => 'Email')))
-            ->add('register', SubmitType::class)
-            ->getForm();
+        ->add('username', TextType::class, array('attr' => array('placeholder' => 'Username'), 'label' => false))
+        ->add('lastname', TextType::class, array('attr' => array('placeholder' => 'Nom'), 'label' => false))
+        ->add('name', TextType::class, array('attr' => array('placeholder' => 'Prenom'), 'label' => false))
+        ->add('password', RepeatedType::class, array('type' => 'password', 'first_options' => array('attr' => array('placeholder' => 'Password'), 'label' => false),
+            'second_options' => array('label' => false, 'attr' => array('placeholder' => 'Confirmed password')), 'invalid_message' => 'Confirmation de mot de passe incorrect',))
+        ->add('email', EmailType::class, array('label' => false, 'attr' => array('placeholder' => 'Email')))
+        ->add('register', SubmitType::class)
+        ->getForm();
         $form->handleRequest($request);
 
         /**
@@ -47,6 +50,23 @@ class RegisterController extends Controller
             $name = $form["name"]->getData();
             $lastname = $form["lastname"]->getData();
             $email = $form["email"]->getData();
+
+
+
+
+
+
+            /**
+             * set data for different date and role;
+             */
+
+            $created_at = new \DateTime("now");
+
+            $users->setCreatedAt($created_at);
+            $users->setIsConnect(0);
+            $users->setLastConnexion($created_at);
+            $users->setUpdatedAt($created_at);
+            $users->setRole(0);
 
             /**
              * encode the password for the security
@@ -76,6 +96,25 @@ class RegisterController extends Controller
             $em->flush();
 
             /**
+             * insert the profil and couverture into the database
+             */
+            $id = $users->getId();
+            
+            $profil_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/profil/profil.txt';
+            $profil = file_get_contents($profil_path);
+
+
+            $couverture_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/couverture/couverture.txt';
+            $couverture = file_get_contents($couverture_path);
+            
+            $photographie->setPhoto($em->getReference('AppBundle\Entity\Users', $id));
+            $photographie->setProfil($profil);
+            $photographie->setCouverture($couverture);
+            $em->persist($photographie);
+            $em->flush();
+
+
+            /**
              * find the id of the user
              */
 
@@ -88,10 +127,10 @@ class RegisterController extends Controller
              */
 
             $message = \Swift_Message::newInstance()
-                ->setSubject("Confirmation d'inscription Instant View")
-                ->setFrom('InstantView@confirmation.fr')
-                ->setTo($email)
-                ->setBody($this->renderView('Emails/registration.html.twig', array('name' => $name, 'lastname' => $lastname, 'user_id' => $user_id, 'private_key' => $private_key)), 'text/html');
+            ->setSubject("Confirmation d'inscription Instant View")
+            ->setFrom('InstantView@confirmation.fr')
+            ->setTo($email)
+            ->setBody($this->renderView('Emails/registration.html.twig', array('name' => $name, 'lastname' => $lastname, 'user_id' => $user_id, 'private_key' => $private_key)), 'text/html');
             $this->get('mailer')->send($message);
 
             /**
