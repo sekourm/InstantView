@@ -16,4 +16,4 @@ app_confirmed_register:
 
 app_index_site:
   path : /index
-  defaults:  { _controller: AppBundle:Article:Index }
+  defaults:  { _controller: AppBundle:Profile:Show }
