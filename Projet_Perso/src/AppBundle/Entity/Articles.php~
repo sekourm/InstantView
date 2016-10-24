@@ -33,7 +33,6 @@ class Articles
 
     private $content;
 
-
     /**
      * @ORM\Column(name="title", type="string")
      */
@@ -41,7 +40,7 @@ class Articles
     private $title;
 
     /**
-     * @ORM\Column(name="time", type="datetime")
+     * @ORM\Column(name="time", type="integer")
      */
 
     private $time;

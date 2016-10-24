@@ -79,15 +79,16 @@ class ArticleController extends Controller
             $file = $profil->move($profil_path,$fileName);
             $data = file_get_contents($file);
             $base64 = 'data:image/' . $extension . ';base64,' . base64_encode($data);
-
+           
             /**
              * save the data into the Profil Entity
              */
             
             $product = $this->getDoctrine()
             ->getRepository('AppBundle\Entity\Photos')
-            ->findOneByphoto(66);
-            $product->setProfil($base64);
+            ->findOneByphoto($check_session);
+           $product->setProfil($base64);
+           
             $em->flush();
 
 
@@ -97,7 +98,7 @@ class ArticleController extends Controller
             
             
             $created_at = new \DateTime("now");
-            $AlbumPhoto->setUsers($em->getReference('AppBundle\Entity\Users', 66));
+            $AlbumPhoto->setUsers($em->getReference('AppBundle\Entity\Users', $check_session));
             $AlbumPhoto->setPhoto($base64);
             $AlbumPhoto->setDate($created_at);
             $AlbumPhoto->setActive(1);
@@ -154,7 +155,7 @@ class ArticleController extends Controller
 
             $product = $this->getDoctrine()
             ->getRepository('AppBundle\Entity\Photos')
-            ->findOneByphoto(66);
+            ->findOneByphoto($check_session);
             $product->setCouverture($base64);
             $em->flush();
            
@@ -165,7 +166,7 @@ class ArticleController extends Controller
              */
 
             $created_at = new \DateTime("now");
-            $AlbumCouverture->setUsers($em->getReference('AppBundle\Entity\Users', 66));
+            $AlbumCouverture->setUsers($em->getReference('AppBundle\Entity\Users', $check_session));
             $AlbumCouverture->setPhoto($base64);
             $AlbumCouverture->setDate($created_at);
             $AlbumCouverture->setActive(1);
