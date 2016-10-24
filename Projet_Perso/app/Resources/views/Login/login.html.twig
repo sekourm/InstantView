@@ -17,7 +17,7 @@
                 {% for msg in app.session.flashBag.get('success') %}
                     {{ msg }}
                 {% endfor %}
-                <div class="close"></div>
+                <div class="ferme"></div>
             </div>
         {% endif %}
         {% if app.session.flashBag.has('error') %}
@@ -25,10 +25,9 @@
                 {% for msg in app.session.flashBag.get('error') %}
                     {{ msg }}
                 {% endfor %}
-                <div class="close"></div>
+                <div class="ferme"></div>
             </div>
         {% endif %}
-    </div>
     </div>
 {% endblock %}
 

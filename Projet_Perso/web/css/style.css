@@ -148,19 +148,19 @@ body {
     padding: 15px;
 }
 
-.close {
+.ferme {
     position: absolute;
     opacity: 0.5;
     width: 315px;
     height: 32px;
     top: 8px;
-    right: 14px;
+    cursor: pointer;
 }
-.close:hover {
+.ferme:hover {
     opacity: 1;
 }
 
-.close:before, .close:after {
+.ferme:before, .ferme:after {
     position: absolute;
     left: 15px;
     content: ' ';
@@ -169,11 +169,11 @@ body {
     background-color: #333;
 }
 
-.close:before {
+.ferme:before {
     transform: rotate(45deg);
 }
 
-.close:after {
+.ferme:after {
     transform: rotate(-45deg);
 }
 
@@ -451,6 +451,12 @@ body {
     margin-bottom: 10px;
 }
 
+.mur_user .publication .each_post ul
+{
+    list-style-type: none;
+}
+
+
 .mur_user .publication .each_post_img
 {
     float: left;
@@ -486,7 +492,6 @@ body {
 {
     width: 300px;
     height: 300px;
-    margin-left: 140px;
     margin-top: 25px;
     margin-bottom: 20px;
 }
@@ -496,4 +501,44 @@ body {
     margin-left: auto;
     margin-right: auto;
     width:1000px;
+}
+
+
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.invitation_img
+{
+    width: 90px;
+    height: 80px;
+    margin-left: 8px;
+}
+
+.modal-body ul
+{
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.plugin_image
+{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
 }

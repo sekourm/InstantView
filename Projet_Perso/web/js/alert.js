@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     //** close with cross **//
 
-    $( ".close" ).click(function() {
+    $( ".ferme" ).click(function() {
         $('.alert_success').fadeOut('slow');
         $('.alert_error').fadeOut('slow');
     });

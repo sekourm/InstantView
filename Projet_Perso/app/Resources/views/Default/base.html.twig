@@ -2,13 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}InstantView - Partage et echange tes données.{% endblock %}</title>
+        <title>{% block title %}InstantView - Partage et échange tes données.{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <script src="{{ asset('js/jquery.js') }}"></script>
-        <script src="{{ asset('js/tweet-compose.js') }}"></script>
-        <script src="{{ asset('js/alert.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/photo-gallery.css') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/alert.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/tweet-compose.js') }}"></script>
+        <script src="{{ asset('js/base64.js') }}"></script>
+        <script src="{{ asset('js/photo-gallery.js') }}"></script>
+        <script src="{{ asset('js/action-photo.js') }}"></script>
     </head>
     <body>
         {% block body %}

@@ -24,7 +24,7 @@ class Photos
     /**
      * @ORM\Column(name="profil", type="text", length=4294967295)
      * @Assert\NotBlank(message="Please, upload the profil picture as a jpg/png file.")
-     * @Assert\File( maxSize = "1024k", mimeTypesMessage = "Please upload a valid Image")
+     * @Assert\File( maxSize = "1024k", mimeTypes={"image/png", "image/jpeg", "image/gif", "video/mp4"})
      */
     private $profil;
 

@@ -1,13 +1,38 @@
 {% extends 'Default/base.html.twig' %}
 {% block body %}
    <a href="{{ path('app_action_disconnect') }}">Logout</a>
-   <h1>Adding a new product</h1>
-   <form method="post" {{form_enctype (form)}}>
+   <h1>Adding a new profil</h1>
+   <form method="post" {{form_enctype (form1)}}>
    
-     {{ form_label(form.profil) }}
-     {{ form_widget(form.profil) }}
-      {{ form_row(form._token) }}
+     {{ form_label(form1.profil) }}
+     {{ form_widget(form1.profil) }}
+      {{ form_row(form1._token) }}
 
-                <button type="submit">login</button>
+                <button type="submit">profil</button>
 </form>
+ <h1>Adding a new couverture</h1>
+   <form method="post" {{form_enctype (form2)}}>
+   
+     {{ form_label(form2.couverture) }}
+     {{ form_widget(form2.couverture) }}
+      {{ form_row(form2._token) }}
+
+                <button type="submit">profil</button>
+</form>
+
+
+
+ <h1>Post an new Article</h1>
+ <form method="post" {{form_enctype (form3)}}>
+   
+     {{ form_label(form3.title) }}
+     {{ form_widget(form3.title) }}
+      {{ form_label(form3.content) }}
+     {{ form_widget(form3.content) }}
+      {{ form_row(form3._token) }}
+
+                <button type="submit">Post</button>
+</form>
+
+
 {% endblock %}

@@ -16,14 +16,15 @@
         <div class="menu_profile">
             <ul>
                 {% if nbr_friends > 0 %}
-                    <li><a href="#">Friends {{ nbr_friends }}</a></li>
+                    <li><a href="#">Amis {{ nbr_friends }}</a></li>
                 {% else %}
-                    <li><a href="#">Friends 0</a></li>
+                    <li><a href="#">Ami 0</a></li>
                 {% endif %}
                 <li><a href="#">Amis en commun</a></li>
                 <li><a href="#">Photos</a></li>
                 {% if nbr_invitations > 0 %}
-                    <li><a href="#">Invitations {{ nbr_invitations }}</a></li>
+                    <li><a href="#" data-toggle="modal"
+                           data-target="#invitation_modal">Invitations {{ nbr_invitations }}</a></li>
                 {% else %}
                     <li><a href="#">Invitations 0</a></li>
                 {% endif %}
@@ -58,7 +59,7 @@
                 <div class="on_my_mur">
                     {% for n in info_user.getArticles %}
                         <div class="each_post">
-                            <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
+                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"
                                              class="each_post_img"/></a>
                             <div class="name_in_post">
                                 {{ info_user.username }}
@@ -70,7 +71,10 @@
                                 {{ n.getTitle }}
                             </div>
                             <div class="img_in_post">
-                                <a href="#"><img src="{{ n.getContent }}" alt="publication img"/></a>
+                                <ul class="plugin_image">
+                                    <li><img alt="{{ n.getTitle }}" src="{{ n.getContent }}"><p class="text">:je suis la</p></li>
+                                </ul>
+                                Commentaire ici gro oublie pas avec sa un p et la classe text
                             </div>
                         </div>
                     {% endfor %}
@@ -95,6 +99,40 @@
                     {% endfor %}
                 </ul>
             </div>
+
+
+            <!-- Modal invitation -->
+            <div class="modal fade" id="invitation_modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Invitations</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                {% for n in invitations %}
+                                    <li>
+                                        <img src="{{ n.getUserInvitSender.getUserPhoto.profil }}" alt="profil image"
+                                             class="invitation_img"/> {{ n.getUserInvitSender.getUsername }}
+                                        <span class="pull-right">
+                                             <a href="#">Accepter</a>
+                                             <a href="#">Refuser</a>
+                                         </span>
+                                    </li>
+                                    <br/>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 {% endblock %}
