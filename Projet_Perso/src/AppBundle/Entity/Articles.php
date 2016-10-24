@@ -28,7 +28,7 @@ class Articles
     private $users;
 
     /**
-     * @ORM\Column(name="content", type="string")
+     * @ORM\Column(name="content", type="text", length=4294967295)
      */
 
     private $content;
