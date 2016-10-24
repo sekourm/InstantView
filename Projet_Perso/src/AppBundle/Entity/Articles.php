@@ -28,11 +28,10 @@ class Articles
     private $users;
 
     /**
-     * @ORM\Column(name="content", type="string")
+     * @ORM\Column(name="content", type="text", length=4294967295)
      */
 
     private $content;
-
 
     /**
      * @ORM\Column(name="title", type="string")
@@ -41,7 +40,7 @@ class Articles
     private $title;
 
     /**
-     * @ORM\Column(name="time", type="datetime")
+     * @ORM\Column(name="time", type="integer")
      */
 
     private $time;

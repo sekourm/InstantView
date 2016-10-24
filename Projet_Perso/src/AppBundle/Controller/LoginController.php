@@ -69,7 +69,7 @@ class LoginController extends Controller
                 $session = $request->getSession();
                 $session->start();
                 $session->set('user_id', $user[0]->getId());
-                $url = $this->generateUrl('app_index_site');
+                $url = $this->generateUrl('app_mur');
                 return $this->redirect($url);
             }
 

@@ -5,25 +5,39 @@
     {% endblock %}
     <div class="content">
         <div class="profil_couverture">
-            <img src="{{ asset('img/couverture_default.jpg') }}" alt="profil couverture"/>
+            <img src="{{ info_user.getUserPhoto.couverture }}" alt="profil couverture"/>
             <div class="profile_image">
-                <img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/>
+                <img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"/>
             </div>
             <div class="name_user">
-                Rémi Boutonpie
+                {{ info_user.name }} {{ info_user.lastname }}
             </div>
         </div>
         <div class="menu_profile">
             <ul>
-                <li><a href="#">Amies</a></li>
+                {% if nbr_friends > 0 %}
+                    <li><a href="#">Friends {{ nbr_friends }}</a></li>
+                {% else %}
+                    <li><a href="#">Friends 0</a></li>
+                {% endif %}
+                <li><a href="#">Amis en commun</a></li>
                 <li><a href="#">Photos</a></li>
-                <li><a href="#">Amies</a></li>
-                <li><a href="#">Photos</a></li>
+                {% if nbr_invitations > 0 %}
+                    <li><a href="#">Invitations {{ nbr_invitations }}</a></li>
+                {% else %}
+                    <li><a href="#">Invitations 0</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="mur_user">
             <div class="info_user_mur">
-                info user
+                {% if info_user.isconnect == true %}
+                    <p>connecter</p>
+                {% elseif info_user.isconnect == false %}
+                    <p>pas connecter</p>
+                {% endif %}
+                <p> derniere connexion : {{ info_user.LastConnexion|date('Y-m-d') }}</p>
+                <p> Compte crée le : {{ info_user.CreatedAt|date('Y-m-d') }}</p>
             </div>
             <div class="publication">
                 <div class="post">
@@ -42,55 +56,44 @@
                     </form>
                 </div>
                 <div class="on_my_mur">
-                    <div class="each_post">
-                        <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
-                                         class="each_post_img"/></a>
-                        <div class="name_in_post">
-                            Rémi Boutonpie
+                    {% for n in info_user.getArticles %}
+                        <div class="each_post">
+                            <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
+                                             class="each_post_img"/></a>
+                            <div class="name_in_post">
+                                {{ info_user.username }}
+                            </div>
+                            <div class="date_in_post">
+                                Publié le {{ n.CreatedAt|date('Y-m-d') }}
+                            </div>
+                            <div class="text_in_post">
+                                {{ n.getTitle }}
+                            </div>
+                            <div class="img_in_post">
+                                <a href="#"><img src="{{ n.getContent }}" alt="publication img"/></a>
+                            </div>
                         </div>
-                        <div class="date_in_post">
-                            Publié le 10/06/2016
-                        </div>
-                        <div class="text_in_post">
-                            vite il faut que vous voyez ceci c'est trop drole sa va disparaitre.
-                        </div>
-                        <div class="img_in_post">
-                            <a href="#"><img src="{{ asset('img/couverture_default.jpg') }}" alt="profil image"/></a>
-                        </div>
-                    </div>
-                    <div class="each_post">
-                        <a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"
-                                         class="each_post_img"/></a>
-                        <div class="name_in_post">
-                            Rémi Boutonpie
-                        </div>
-                        <div class="date_in_post">
-                            Publié le 10/06/2016
-                        </div>
-                        <div class="text_in_post">
-                            vite il faut que vous voyez ceci c'est trop drole sa va disparaitre.
-                        </div>
-                        <div class="img_in_post">
-                            <a href="#"><img src="{{ asset('img/couverture_default.jpg') }}" alt="profil image"/></a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="list_amie_mur">
                 <div class="number_amie">
-                    <p> 90 Amies </p>
+                    {% if nbr_friends <= 1 %}
+                        {{ nbr_friends }} ami
+                    {% else %}
+                        {{ nbr_friends }} amis
+                    {% endif %}
                 </div>
                 <ul>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
-                    <li><a href="#"><img src="{{ asset('img/profile_default.jpg') }}" alt="profil image"/></a></li>
+                    {% for n in friend1 %}
+                        <li><a href="#"><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"/></a>
+                        </li>
+                    {% endfor %}
+                    {% for n in friend2 %}
+                        <li><a href="#"><img src="{{ n.userfriendone.getUserPhoto.profil }}" alt="profil image"/></a>
+                        </li>
+                    {% endfor %}
                 </ul>
-            </div>
-            <div class="preview_publication">
-                preview publication 10
             </div>
         </div>
     </div>

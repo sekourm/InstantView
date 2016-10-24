@@ -299,8 +299,9 @@ body {
 
 .mur_user .list_amie_mur .number_amie
 {
-    margin-left: 24px;
     font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .mur_user .list_amie_mur
@@ -337,15 +338,6 @@ body {
     width: 90px;
     height: 80px;
     margin-left: 8px;
-}
-
-.mur_user .preview_publication
-{
-    float: left;
-    background:#E6E6FA;
-    width:400px;
-    height: 200px;
-    margin-top: 20px;
 }
 
 .mur_user .info_user_mur

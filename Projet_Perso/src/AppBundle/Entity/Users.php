@@ -59,38 +59,16 @@ class Users
      */
     private $friend_two;
 
-
-
-
-
-
-
-
-
     /**
-     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="user_invit_sender")
      */
     private $sender;
 
     /**
-     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="user_invit_recever")
      */
     private $recever;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     /**
      *
      * @Assert\Length(

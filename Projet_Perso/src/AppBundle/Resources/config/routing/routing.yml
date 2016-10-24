@@ -15,12 +15,12 @@ app_confirmed_register:
   path : /confirmation/account/{user_id}/{private_key}
   defaults:  { _controller: AppBundle:Confirmed:Confirmed }
 
-app_index_site:
-  path : /index
+app_profil:
+  path : /profil
   defaults:  { _controller: AppBundle:Profile:Show }
 
-app_index_site:
-  path : /mur
+app_mur:
+  path : /home
   defaults:  { _controller: AppBundle:Article:Index }
 
 app_action_disconnect:

@@ -23,13 +23,13 @@ class Invitations
 
     /**
      * @ORM\ManyToOne(targetEntity="Users", inversedBy="sender")
-     * @ORM\JoinColumn(name="user_invit_sender",referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="user_invit_sender", referencedColumnName="id", nullable=false)
      */
     private $user_invit_sender;
 
     /**
      * @ORM\ManyToOne(targetEntity="Users", inversedBy="recever")
-     * @ORM\JoinColumn(name="user_invit_recever",referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="user_invit_recever", referencedColumnName="id", nullable=false)
      */
     private $user_invit_recever;
 

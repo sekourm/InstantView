@@ -44,7 +44,7 @@ class Users
     private $album_couverture;
 
     /**
-     * @ORM\OneToMany(targetEntity="Photos", mappedBy="photo")
+     * @ORM\OneToOne(targetEntity="Photos", mappedBy="photo")
      */
 
     private $user_photo;
@@ -59,38 +59,16 @@ class Users
      */
     private $friend_two;
 
-
-
-
-
-
-
-
-
     /**
-     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="user_invit_sender")
      */
     private $sender;
 
     /**
-     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="Invitations", mappedBy="user_invit_recever")
      */
     private $recever;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     /**
      *
      * @Assert\Length(
