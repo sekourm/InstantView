@@ -618,3 +618,43 @@ body {
     border-bottom: 5px solid #669644;
     text-shadow: 0px -2px #669644;
 }
+
+.center{
+    width: 800px;
+    margin-left:-39px;
+}
+
+p.m_title:first-letter {
+    text-transform: uppercase;
+}
+
+
+#comment{
+    height: 39px;
+    width: 530px;
+}
+
+.top-buffer { margin-top:90px; }
+.mur_user .publication .top #enquiry{
+    position: relative;
+    top:10px;
+    border-radius: 4px;
+    height: 180px;
+    margin-left: 15px;
+}
+
+.mur_user .publication .top #enquiry .tweet{
+    width: 630px !important;
+}
+
+.mur_user .publication .top form input[type="submit"]{
+    cursor: pointer;
+    box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #A8F1FF;
+    border-radius: 2px;
+    background-color: #157991;
+    color: #fff;
+    float: right;
+    padding: 10px;
+    margin-right:-230px;
+}
