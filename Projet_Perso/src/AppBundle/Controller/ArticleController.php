@@ -251,7 +251,6 @@ class ArticleController extends Controller
             }
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
-
         return $this->render('Content/home.html.twig', array('form1' => $form1->createView(), 'form2' => $form2->createView(), 'form3' => $form3->createView(), 'AllArticles' => $AllArticles));
     }
 }

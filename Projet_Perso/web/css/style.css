@@ -225,9 +225,13 @@ body {
     float: left;
 }
 
-.profil_couverture img {
-    width: 100%;
-    height: 100%;
+.profil_couverture_img {
+    width: 1000px !important;
+    height: 320px !important;
+}
+
+.img-responsive, .thumbnail a > img, .thumbnail > img {
+    max-width: 1000px !important;
 }
 
 .profile_image img {
@@ -499,9 +503,13 @@ body {
 }
 
 .plugin_image {
-    width: 350px;
-    margin-left: auto;
-    margin-right: auto;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.margin-img-publish {
+    margin-left: 150px;
 }
 
 .pull-left {
@@ -551,9 +559,4 @@ body {
     margin-right: 100px;
     opacity: 0;
     filter: alpha(opacity=0); /* IE 5-7 */
-}
-
-.center {
-    margin-left: -8px;
-    width: 779px;
 }

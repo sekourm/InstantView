@@ -299,8 +299,8 @@
         'hasModal' : true,
         'fullHeight' : true,
         'iconClose' : 'glyphicon glyphicon-heart',
-        'iconLeft' : 'glyphicon glyphicon-menu-left',
-        'iconRight' : 'glyphicon glyphicon-menu-right'
+        'iconLeft' : 'glyphicon glyphicon-heart',
+        'iconRight' : 'glyphicon glyphicon-heart'
     }
 
 
