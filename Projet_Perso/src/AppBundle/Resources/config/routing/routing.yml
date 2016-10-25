@@ -33,3 +33,7 @@ app_action_update_profil:
 app_action_couverture:
   path : /action/couverture
   defaults:  { _controller: AppBundle:Article:Action_couverture }
+
+app_show_album:
+    path : /show/showalbum
+    defaults:  { _controller: AppBundle:Photo:ShowAllAlbum }
