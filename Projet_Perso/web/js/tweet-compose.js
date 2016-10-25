@@ -7,7 +7,7 @@ $(document).ready(function () {
         $commentLength = $commentValue.length,
         submitButton = $('form#enquiry input[type=submit]').hide();
 
-    $('form').prepend('<span class="counter"></span>');
+    $('form#enquiry').prepend('<span class="counter"></span>');
     counter = $('span.counter');
     counter.html(counterValue); //display your set max length
     comment.attr('maxlength', counterValue); //apply max length to textarea

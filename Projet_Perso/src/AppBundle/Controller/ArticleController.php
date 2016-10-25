@@ -46,8 +46,13 @@ class ArticleController extends Controller
 
 
         $user_id = $this->get('session')->get('user_id');
-        $user = $em->getRepository('AppBundle:Articles')->findAll();
-        $AllArticles = $user;
+        $AllArticles = $em->getRepository('AppBundle:Articles')->findAll();
+        $foto_user = $em->getRepository('AppBundle:Users')->findOneBy( array('id' => $user_id));
+
+
+
+
+
 
 
         /**
@@ -173,7 +178,7 @@ class ArticleController extends Controller
 
         $defaultData3 = array('message' => 'Type your message here');
         $form3 = $this->createFormBuilder($defaultData3)
-            ->add('title', TextareaType::class, array('attr' => array('class' => 'tinymce', 'id' => 'message', 'maxlength' => '140'),))
+            ->add('title', TextareaType::class, array('attr' => array('class' => 'tweet', 'id' => 'message', 'maxlength' => '140'),))
             ->add('content', FileType::class, array('attr' => array('placeholder' => 'content', 'id' => 'image_src_photo'), 'label' => false))
             ->getForm();
         $form3->handleRequest($request);
@@ -251,6 +256,6 @@ class ArticleController extends Controller
             }
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
-        return $this->render('Content/home.html.twig', array('form1' => $form1->createView(), 'form2' => $form2->createView(), 'form3' => $form3->createView(), 'AllArticles' => $AllArticles));
+        return $this->render('Content/home.html.twig', array('form1' => $form1->createView(), 'form2' => $form2->createView(), 'form3' => $form3->createView(), 'AllArticles' => $AllArticles,'foto_user'=>$foto_user));
     }
 }
