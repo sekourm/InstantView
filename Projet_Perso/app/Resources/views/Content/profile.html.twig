@@ -32,7 +32,7 @@
                     <li><a href="#">Ami 0</a></li>
                 {% endif %}
                 <li><a href="#">Amis en commun</a></li>
-                <li><a href="#">Photos</a></li>
+                <li><a href="/show/showalbum">Photos</a></li>
                 {% if nbr_invitations > 0 %}
                     <li><a href="#" data-toggle="modal"
                            data-target="#invitation_modal">Invitations {{ nbr_invitations }}</a></li>
@@ -70,8 +70,7 @@
                 <div class="on_my_mur">
                     {% for n in info_user.getArticles %}
                         <div class="each_post">
-                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"
-                                             class="each_post_img"/></a>
+                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image" class="each_post_img"/></a>
                             <div class="name_in_post">
                                 {{ info_user.username }}
                             </div>
@@ -121,7 +120,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Amis</h4>
                         </div>
-                        <div class="modal-body">
+                        <div class="body">
                             <ul>
                                 {% for n in all_friend1 %}
                                     <li><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"
@@ -151,7 +150,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Invitations</h4>
                         </div>
-                        <div class="modal-body">
+                        <div class="body">
                             <ul>
                                 {% for n in invitations %}
                                     <li>

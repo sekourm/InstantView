@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Invitations;
 use AppBundle\Entity\Users;
 use AppBundle\Entity\Articles;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,32 +12,25 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class PhotoController extends Controller
 {
-    public function UpdateAction(Request $request)
+    public function ShowAllAlbumAction(Request $request)
     {
-       $em = $this->getDoctrine()->getManager();
+        /*
+         * get the id of users in session
+         */
 
-       $session = $request->getSession();
-       $check_session = $session->get('user_id');
-       if (!$check_session) {
-           $url = $this->generateUrl('app_login');
-        return $this->redirect($url);
-       }
+        $user_id = $this->get('session')->get('user_id');
 
+        /*
+         * Select all info of users with all join info
+         */
 
-        $photos = new Photos();
-        $form = $this->createFormBuilder($photos);
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => $user_id));
 
-
-            ->add('profil', FileType::class, array('label' => 'Brochure (PDF file)'))
-            ->getForm();
-        $form->handleRequest($request);
-
-
-        //return $this->render('Content/index.html.twig');
-
-
+        return $this->render('Content/album.html.twig', array('user' => $user));
     }
 }

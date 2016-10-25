@@ -1,0 +1,38 @@
+{% extends 'Default/base.html.twig' %}
+{% block body %}
+    {% block nav %}
+        {% include '/Nav/nav.html.twig' %}
+    {% endblock %}
+    <div class="content">
+
+        <div class="width_button_album">
+            <div class="button1">
+                <button class="profil_show action-button shadow animate green">Profil</button>
+            </div>
+            <div class="button2">
+                <button class="couverture_show action-button shadow animate green">Couverture</button>
+            </div>
+        </div>
+
+        <ul class="plugin_image inline_image profil_hide">
+            <li>
+                <img src="{{ user.getuserPhoto.getProfil }}"  alt="{{ user.username }}" class="height_width_album"/>
+            </li>
+            {% for n in user.getAlbumProfil %}
+                <li>
+                    <img src="{{ n.getPhoto }}" alt="{{ user.username }}" class="height_width_album" />
+                </li>
+            {% endfor %}
+        </ul>
+        <ul class="plugin_image inline_image couverture_hide">
+            <li>
+                <img src="{{ user.getuserPhoto.getCouverture }}" alt="{{ user.username }}" class="height_width_album"/>
+            </li>
+            {% for n in user.getAlbumCouverture %}
+                <li>
+                    <img src="{{ n.getPhoto }}" alt="{{ user.username }}" class="height_width_album"/>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
