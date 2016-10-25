@@ -4,6 +4,84 @@
         {% include '/Nav/nav.html.twig' %}
     {% endblock %}
     <div class="content">
-        sdfdsfds
+        <div class="mur_user">
+            <div class="center">
+
+                <div class="publication">
+                    <div class="post">
+                        <form method="post" id="enquiry" {{ form_enctype (form3) }}>
+
+                            {#  <div class="upload">
+                                     <ul>
+                                         <li><a href="#"><img src="{{ asset('img/photo.png') }}" alt="profil image"/></a>
+                                         </li>
+                                         <li><a href="#"><img src="{{ asset('img/video.png') }}" alt="profil image"/></a>
+                                         </li>
+                                     </ul>
+                                 </div>#}
+                            <div class="containers">
+  <span class="select-wrapper pull-left">
+      {{ form_label(form3.content) }}
+      {{ form_widget(form3.content) }}
+  </span>
+
+                                <span class="pull-rights">
+     Image/Video
+  </span>
+
+                            </div>
+                            {{ form_widget(form3.title) }}
+                            <input type="submit" value="Publier">
+
+                            {{ form_row(form3._token) }}
+                        </form>
+
+                    </div>
+
+
+
+                    <div class="on_my_mur">
+                        {% for n in AllArticles %}
+                            <div class="each_post">
+                                <a href="#"><img src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image"
+                                                 class="each_post_img"/></a>
+                                <div class="name_in_post">
+                                    {{ n.getUsers.username }}
+                                </div>
+                                <div class="date_in_post">
+                                    Publié le {{ n.createdAt|date('Y-m-d') }}
+                                </div>
+                                <div class="text_in_post">
+                                    {{ n.title }}
+                                </div>
+                                <div class="img_in_post">
+                                    {% if n.type == 'image' %}
+                                        <ul class="plugin_image">
+                                            <li><img alt="  {{ n.title }}" src="{{ n.content }}"><p class="text">:je suis la</p></li>
+                                        </ul>
+                                    {% else %}
+                                        <video width="320" height="240" controls>
+                                            <source src='{{ asset("Upload/" ~ n.getUsers.getId ~ "/" ~ n.content) }}' type="video/mp4">
+                                            <source src="movie.ogg" type="video/ogg">
+                                        </video>
+                                    {% endif %}
+
+                                    Commentaire ici gro oublie pas avec sa un p et la classe text
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

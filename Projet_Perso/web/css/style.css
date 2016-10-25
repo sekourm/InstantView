@@ -511,3 +511,52 @@ body {
 .margin-img-publish {
     margin-left: 150px;
 }
+
+.pull-left {
+    float: left;
+}
+
+.pull-rights {
+    float: left !important;
+    margin-left: 8px;
+    margin-top: 2px;
+}
+
+.containers {
+    width: 500px;
+    padding: 4px;
+}
+
+.select-wrapper {
+    background: url(http://s10.postimg.org/4rc0fv8jt/camera.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 33px;
+    height: 26px;
+}
+
+.select-wrapper2 {
+    background: url(http://www.icone-png.com/png/24/23794.png) no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 33px;
+    height: 26px;
+}
+
+#form_content {
+    width: 26px;
+    height: 26px;
+    margin-right: 100px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 5-7 */
+}
+
+#image_src_video {
+    width: 26px;
+    height: 26px;
+    margin-right: 100px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 5-7 */
+}
