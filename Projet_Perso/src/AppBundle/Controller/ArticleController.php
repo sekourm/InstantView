@@ -33,6 +33,7 @@ class ArticleController extends Controller
         $session = $request->getSession();
         $created_at = new \DateTime("now");
 
+
         /**
          * check is user is connected o redirect the the login page
          */
@@ -42,6 +43,12 @@ class ArticleController extends Controller
             $url = $this->generateUrl('app_login');
             return $this->redirect($url);
         }
+
+
+        $user_id = $this->get('session')->get('user_id');
+        $user = $em->getRepository('AppBundle:Articles')->findAll();
+        $AllArticles = $user;
+
 
         /**
          * create form builder for edit the profil picture
@@ -60,7 +67,6 @@ class ArticleController extends Controller
         if ($form1->isSubmitted() && $form1->isValid()) {
             $defaultData1 = $form1->getData();
             $profil = $form1["profil"]->getData();
-
 
             /**
              * check the extension, push the image into a folder to convert into base64,
@@ -81,7 +87,6 @@ class ArticleController extends Controller
                 ->getRepository('AppBundle\Entity\Photos')
                 ->findOneByphoto($check_session);
             $product->setProfil($base64);
-
             $em->flush();
 
             /**
@@ -101,7 +106,6 @@ class ArticleController extends Controller
              */
 
             $fs->remove(array($profil_path . $fileName));
-            exit;
         }
 
         /**
@@ -160,7 +164,6 @@ class ArticleController extends Controller
              */
 
             $fs->remove(array($profil_path . $fileName));
-            exit;
         }
 
 
@@ -170,8 +173,8 @@ class ArticleController extends Controller
 
         $defaultData3 = array('message' => 'Type your message here');
         $form3 = $this->createFormBuilder($defaultData3)
-            ->add('title', TextareaType::class, array('attr' => array('class' => 'tinymce'),))
-            ->add('content', FileType::class, array('attr' => array('placeholder' => 'content'), 'label' => false))
+            ->add('title', TextareaType::class, array('attr' => array('class' => 'tinymce', 'id' => 'message', 'maxlength' => '140'),))
+            ->add('content', FileType::class, array('attr' => array('placeholder' => 'content', 'id' => 'image_src_photo'), 'label' => false))
             ->getForm();
         $form3->handleRequest($request);
 
@@ -180,6 +183,8 @@ class ArticleController extends Controller
          */
 
         if ($form3->isSubmitted() && $form3->isValid()) {
+            $date = date('Y/m/d');
+            // dump($date);exit;
             $defaultData3 = $form3->getData();
             $title = $form3["title"]->getData();
             $content = $form3["content"]->getData();
@@ -187,56 +192,66 @@ class ArticleController extends Controller
             $extension = $content->getClientOriginalExtension();
             $fileName = md5(uniqid()) . '.' . $content->getClientOriginalExtension();
             $mimeType = $content->getClientMimeType();
+
             $profil_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/Upload/';
-            $test_id = 67;
-            $true = $fs->exists($profil_path . $test_id);
+
+            $true = $fs->exists($profil_path . $user_id);
 
             /**
-             * check the extension, push the video or music into a folder to convert,
+             * if the file is video  so push it inro user folder
              */
 
-            if ($mimeType != 'image/jpeg') {
+            if ($mimeType == "video/mp4") {
                 if ($true === false) {
-                    $fs->mkdir($profil_path . $test_id, 0700);
+                    $fs->mkdir($profil_path . $user_id, 0700);
 
                 }
-                $myfolder = $profil_path . $test_id . '/';
-                $content->move($profil_path . $test_id . '/', $fileName);
-                $Articles->setUsers($em->getReference('AppBundle\Entity\Users', $test_id));
+                $myfolder = $profil_path . $user_id . '/';
+                $content->move($profil_path . $user_id . '/', $fileName);
+                $Articles->setUsers($em->getReference('AppBundle\Entity\Users', $user_id));
                 $Articles->setContent($fileName);
                 $Articles->setType('videos');
-                $Articles->setTime($created_at);
+                $Articles->setTime(10);
 
                 $Articles->setTitle($title);
-                $Articles->setCreatedAt($created_at);
-                $Articles->setUpdatedAt($created_at);
+                $Articles->setCreatedAt(new \DateTime($date));
+                $Articles->setUpdatedAt(new \DateTime($date));
                 $Articles->setActive(0);
                 $em->persist($Articles);
                 $em->flush();
 
 
-            } else {
+            } /**
+             * if the file is image so transform it into base64
+             */
+            else if ($mimeType == 'image/jpeg' || $mimeType == 'image/png') {
 
                 $file = $content->move($profil_path, $fileName);
                 $data = file_get_contents($file);
                 $base64 = 'data:image/' . $extension . ';base64,' . base64_encode($data);
 
-                $Articles->setUsers($em->getReference('AppBundle\Entity\Users', $test_id));
+                $Articles->setUsers($em->getReference('AppBundle\Entity\Users', $user_id));
                 $Articles->setContent($base64);
                 $Articles->setType('image');
-                $Articles->setTime($created_at);
+                $Articles->setTime(10);
                 $Articles->setTitle($title);
-                $Articles->setCreatedAt($created_at);
-                $Articles->setUpdatedAt($created_at);
+                $Articles->setCreatedAt(new \DateTime($date));
+                $Articles->setUpdatedAt(new \DateTime($date));
                 $Articles->setActive(0);
                 $em->persist($Articles);
                 $em->flush();
                 $fs->remove(array($profil_path . $fileName));
 
+            } /**
+             * if the file is not image or video so return false
+             */
+
+            else {
+                return $this->redirect($request->server->get('HTTP_REFERER'));
             }
-            exit;
+            return $this->redirect($request->server->get('HTTP_REFERER'));
         }
 
-        return $this->render('Content/index.html.twig', array('form1' => $form1->createView(), 'form2' => $form2->createView(), 'form3' => $form3->createView()));
+        return $this->render('Content/home.html.twig', array('form1' => $form1->createView(), 'form2' => $form2->createView(), 'form3' => $form3->createView(), 'AllArticles' => $AllArticles));
     }
 }
