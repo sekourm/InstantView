@@ -5,9 +5,20 @@
     {% endblock %}
     <div class="content">
         <div class="profil_couverture">
-            <img src="{{ info_user.getUserPhoto.couverture }}" alt="profil couverture"/>
+            <ul class="plugin_image">
+                <li><img src="{{ info_user.getUserPhoto.couverture }}" class="profil_couverture_img"
+                         alt="{{ info_user.username }}"/></li>
+                {% for n in info_user.getAlbumCouverture %}
+                    <li class="hide_profil"><img src="{{ n.getPhoto }}" alt="{{ info_user.username }}"></li>
+                {% endfor %}
+            </ul>
             <div class="profile_image">
-                <img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"/>
+                <ul class="plugin_image">
+                    <li><img alt="{{ info_user.username }}" src="{{ info_user.getUserPhoto.profil }}"></li>
+                    {% for n in info_user.getAlbumProfil %}
+                        <li class="hide_profil"><img src="{{ n.getPhoto }}" alt="{{ info_user.username }}"></li>
+                    {% endfor %}
+                </ul>
             </div>
             <div class="name_user">
                 {{ info_user.name }} {{ info_user.lastname }}
@@ -16,7 +27,7 @@
         <div class="menu_profile">
             <ul>
                 {% if nbr_friends > 0 %}
-                    <li><a href="#">Amis {{ nbr_friends }}</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#friend_modal">Amis {{ nbr_friends }}</a></li>
                 {% else %}
                     <li><a href="#">Ami 0</a></li>
                 {% endif %}
@@ -72,7 +83,8 @@
                             </div>
                             <div class="img_in_post">
                                 <ul class="plugin_image">
-                                    <li><img alt="{{ n.getTitle }}" src="{{ n.getContent }}"><p class="text">:je suis la</p></li>
+                                    <li class="margin-img-publish"><img alt="{{ n.getTitle }}" src="{{ n.getContent }}">
+                                        <p class="text">je suis la</p></li>
                                 </ul>
                                 Commentaire ici gro oublie pas avec sa un p et la classe text
                             </div>
@@ -100,6 +112,35 @@
                 </ul>
             </div>
 
+            <!-- Modal Friend -->
+            <div class="modal fade" id="friend_modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Amis</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                {% for n in all_friend1 %}
+                                    <li><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"
+                                             class="invitation_img"/> {{ n.userfriendtwo.getUsername }}</li>
+                                    <br/>
+                                {% endfor %}
+                                {% for n in all_friend2 %}
+                                    <li><img src="{{ n.userfriendone.getUserPhoto.profil }}" alt="profil image"
+                                             class="invitation_img"/> {{ n.userfriendone.getUsername }}</li>
+                                    <br/>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Modal invitation -->
             <div class="modal fade" id="invitation_modal" role="dialog">
@@ -131,7 +172,6 @@
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>

@@ -3,4 +3,6 @@ $(document).ready(function(){
         "hasModal" : true,
         "fullHeight" : false
     });
+
+    $('.hide_profil').hide();
 });
