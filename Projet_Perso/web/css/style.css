@@ -375,7 +375,7 @@ body {
     margin: 0 auto;
 }
 
-.mur_user .publication form textarea {
+.mur_user .publication .top form textarea {
     border-radius: 2px;
     box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.3);
     border: 1px solid #e2e6e6;
@@ -412,9 +412,9 @@ body {
     padding: 10px;
 }
 
-.mur_user .publication .post {
+/*.mur_user .publication .post {
     padding-bottom: 60px;
-}
+}*/
 
 .mur_user .publication .on_my_mur {
     min-height: 540px;
@@ -629,11 +629,6 @@ p.m_title:first-letter {
 }
 
 
-#comment{
-    height: 39px;
-    width: 530px;
-}
-
 .top-buffer { margin-top:90px; }
 .mur_user .publication .top #enquiry{
     position: relative;
@@ -657,4 +652,77 @@ p.m_title:first-letter {
     float: right;
     padding: 10px;
     margin-right:-230px;
+}
+
+.mur_user .publication #comment{
+    position: relative;
+    top:-41px;
+    height: 39px;
+    margin-left: -23px;
+
+}
+
+#comment{
+
+    width: 500px;
+}
+
+#form_title{
+    margin-top: 30px;
+    margin-left: -118px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #e2e6e6;
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    width: 463px;
+    height: 69px;
+    resize: none;
+}
+#my_input{
+    cursor: pointer;
+    box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #A8F1FF;
+    border-radius: 2px;
+    background-color: #157991;
+    color: #fff;
+    float: right;
+    padding: 10px;
+}
+.containers_profile{
+    width: 500px;
+    padding: 4px;
+    margin-left: 69px;
+}
+.col-md-12 #enquriry span .counter{
+    margin-right: 10px;
+}
+.top-buffer { margin-top:61px; }
+.top-buff { margin-top:20px; }
+
+#comment_profile{
+    position: relative;
+    top:-2px;
+    height: 39px;
+    margin-left: 18px;
+    width: 500px;
+    resize: none;
+}
+.list{
+    display: inline-block;
+    padding: 5px 5px;
+}
+#search{
+    top: 2px;
+    height: 37px;
+    width: 354px;
+    margin-right: 320px;
+    margin-top: 5px;
+
+}
+#recherche{
+    background-color: aliceblue;
+}
+#recherche li{
+list-style-type: none;
 }

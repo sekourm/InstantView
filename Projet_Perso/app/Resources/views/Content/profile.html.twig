@@ -41,134 +41,238 @@
                 {% endif %}
             </ul>
         </div>
-        <div class="mur_user">
-            <div class="info_user_mur">
-                {% if info_user.isconnect == true %}
-                    <p>connecter</p>
-                {% elseif info_user.isconnect == false %}
-                    <p>pas connecter</p>
-                {% endif %}
-                <p> derniere connexion : {{ info_user.LastConnexion|date('Y-m-d') }}</p>
-                <p> Compte crée le : {{ info_user.CreatedAt|date('Y-m-d') }}</p>
-            </div>
-            <div class="publication">
-                <div class="post">
-                    <form id="enquiry" action="">
-                        <div class="upload">
-                            <ul>
-                                <li><a href="#"><img src="{{ asset('img/photo.png') }}" alt="profil image"/></a>
-                                </li>
-                                <li><a href="#"><img src="{{ asset('img/video.png') }}" alt="profil image"/></a>
-                                </li>
-                            </ul>
+
+
+        <div class="">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">User Info</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                {% if info_user.isconnect == true %}
+                                    <p>connecter</p>
+                                {% elseif info_user.isconnect == false %}
+                                    <p>pas connecter</p>
+                                {% endif %}
+                                <p> derniere connexion : {{ info_user.LastConnexion|date("Y-m-d") }}</p>
+                                <p> Compte crée le : {{ info_user.CreatedAt|date('Y-m-d') }}</p>
+                            </div>
+
+
+                            <div class="panel-body" id="">
+                                <ul class="list" id="list"></ul>
+                            </div>
+
+
                         </div>
-                        <textarea maxlength="140" name="message" id="message"
-                                  placeholder="Poster une publication :)"></textarea>
-                        <input type="submit" value="Publier">
-                    </form>
-                </div>
-                <div class="on_my_mur">
-                    {% for n in info_user.getArticles %}
-                        <div class="each_post">
-                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image" class="each_post_img"/></a>
-                            <div class="name_in_post">
-                                {{ info_user.username }}
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Friends</h3>
                             </div>
-                            <div class="date_in_post">
-                                Publié le {{ n.CreatedAt|date('Y-m-d') }}
-                            </div>
-                            <div class="text_in_post">
-                                {{ n.getTitle }}
-                            </div>
-                            <div class="img_in_post">
-                                <ul class="plugin_image">
-                                    <li class="margin-img-publish"><img alt="{{ n.getTitle }}" src="{{ n.getContent }}">
-                                        <p class="text">je suis la</p></li>
+
+                            <div class="panel-body">
+                                <div class="number_amie">
+                                    {% if nbr_friends <= 1 %}
+                                        {{ nbr_friends }} ami
+                                    {% else %}
+                                        {{ nbr_friends }} amis
+                                    {% endif %}
+                                </div>
+                                <ul>
+                                    {% for n in friend1 %}
+                                        <li class="list"><a href="profil/{{ n.userfriendtwo.getId }}"><img
+                                                        src="{{ n.userfriendtwo.getUserPhoto.profil }}"
+                                                        alt="profil image" height="50" width="50"/></a>
+                                        </li>
+                                    {% endfor %}
+                                    {% for n in friend2 %}
+                                        <li><a href="#"><img src="{{ n.userfriendone.getUserPhoto.profil }}"
+                                                             alt="profil image" height="50" width="50"/></a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
-                                Commentaire ici gro oublie pas avec sa un p et la classe text
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
-            </div>
-            <div class="list_amie_mur">
-                <div class="number_amie">
-                    {% if nbr_friends <= 1 %}
-                        {{ nbr_friends }} ami
-                    {% else %}
-                        {{ nbr_friends }} amis
-                    {% endif %}
-                </div>
-                <ul>
-                    {% for n in friend1 %}
-                        <li><a href="#"><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"/></a>
-                        </li>
-                    {% endfor %}
-                    {% for n in friend2 %}
-                        <li><a href="#"><img src="{{ n.userfriendone.getUserPhoto.profil }}" alt="profil image"/></a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+                <div class="col-md-7">
+                    <div class="col-md-12">
+                        <form method="post" id="enquiry" {{ form_enctype (form3) }}>
 
-            <!-- Modal Friend -->
-            <div class="modal fade" id="friend_modal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Amis</h4>
-                        </div>
-                        <div class="body">
-                            <ul>
-                                {% for n in all_friend1 %}
-                                    <li><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"
-                                             class="invitation_img"/> {{ n.userfriendtwo.getUsername }}</li>
-                                    <br/>
-                                {% endfor %}
-                                {% for n in all_friend2 %}
-                                    <li><img src="{{ n.userfriendone.getUserPhoto.profil }}" alt="profil image"
-                                             class="invitation_img"/> {{ n.userfriendone.getUsername }}</li>
-                                    <br/>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                        </div>
+
+                            <div class="containers_profile">
+  <span class="select-wrapper pull-left">
+      {{ form_label(form3.content) }}
+      {{ form_widget(form3.content) }}
+  </span>
+
+                                <span class="pull-rights">
+     Image/Video
+  </span>
+
+                            </div>
+                            {{ form_widget(form3.title) }}
+                            <input id="my_input" type="submit" value="Publier">
+
+                            {{ form_row(form3._token) }}
+                        </form>
+                    </div>
+                    <div class="col-md-12 top-buffer">
+
+
+                        {% for n in info_user.getArticles %}
+                            <div class="top-buff">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"
+                                                         style="width: 90px;height: 80px"></a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="col-md-12">
+                                            <p class="m_title"
+                                               style="font-size: 20px; font-weight: bold"> {{ info_user.username }} {{ info_user.lastname }}
+                                            </p>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            Publié le {{ n.CreatedAt|date('Y-m-d') }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="m_title" style="font-size: 20px">  {{ n.getTitle }}</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {% if n.type == 'image' %}
+                                            <ul class="plugin_image">
+                                                <li><img alt="  {{ n.title }}" src="{{ n.content }}"
+                                                         style="height: 300px;width: 600px">
+                                                    <p class="text">:je suis la</p></li>
+                                            </ul>
+                                        {% else %}
+                                            <video style="height: 300px;width: 600px" controls>
+                                                <source src='{{ asset("Upload/" ~ n.getUsers.getId ~ "/" ~ n.content) }}'
+                                                        type="video/mp4">
+                                            </video>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1">
+
+
+                                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}"
+                                                             alt="profil image" style="width: 45px;height: 45px"></a>
+
+                                        </div>
+                                        <div class="col-md-10">
+                                            <form>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" id="comment_profile"></textarea>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Modal invitation -->
-            <div class="modal fade" id="invitation_modal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Invitations</h4>
-                        </div>
-                        <div class="body">
-                            <ul>
-                                {% for n in invitations %}
-                                    <li>
-                                        <img src="{{ n.getUserInvitSender.getUserPhoto.profil }}" alt="profil image"
-                                             class="invitation_img"/> {{ n.getUserInvitSender.getUsername }}
-                                        <span class="pull-right">
-                                             <a href="#">Accepter</a>
-                                             <a href="#">Refuser</a>
+        <div class="modal fade" id="friend_modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Amis</h4>
+                    </div>
+                    <div class="body">
+                        <ul>
+                            {% for n in all_friend1 %}
+                                <li><img src="{{ n.userfriendtwo.getUserPhoto.profil }}" alt="profil image"
+                                         class="invitation_img"/> {{ n.userfriendtwo.getUsername }}</li>
+                                <br/>
+                            {% endfor %}
+                            {% for n in all_friend2 %}
+                                <li><img src="{{ n.userfriendone.getUserPhoto.profil }}" alt="profil image"
+                                         class="invitation_img"/> {{ n.userfriendone.getUsername }}</li>
+                                <br/>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal invitation -->
+        <div class="modal fade" id="invitation_modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Invitations</h4>
+                    </div>
+                    <div class="body">
+                        <ul>
+                            {% for n in invitations %}
+                                <li>
+                                    <img src="{{ n.getUserInvitSender.getUserPhoto.profil }}" alt="profil image"
+                                         class="invitation_img"/> {{ n.getUserInvitSender.getUsername }}
+                                    <span class="pull-right">
+                                             <a href="/accept/{{ n.getUserInvitSender.getId }}">Accepter</a>
+                                             <a href="/refuse/{{ n.getUserInvitSender.getId }}">Refuser</a>
                                          </span>
-                                    </li>
-                                    <br/>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                        </div>
+                                </li>
+                                <br/>
+                            {% endfor %}
+                        </ul>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#invitation_modal">Open Modal
+    </button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

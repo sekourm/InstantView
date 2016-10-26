@@ -37,3 +37,20 @@ app_action_couverture:
 app_show_album:
     path : /show/showalbum
     defaults:  { _controller: AppBundle:Photo:ShowAllAlbum }
+
+
+app_refuse_invitation:
+    path : /refuse/{id}
+    defaults:  { _controller: AppBundle:Invitation:Refuse }
+
+app_accept_invitation:
+    path : /accept/{id}
+    defaults:  { _controller: AppBundle:Invitation:Accept }
+
+app_friends:
+  path : /profil/{id}
+  defaults:  { _controller: AppBundle:Friends:Show }
+
+app_users:
+  path : /search/{username}
+  defaults:  { _controller: AppBundle:Profile:Search }
