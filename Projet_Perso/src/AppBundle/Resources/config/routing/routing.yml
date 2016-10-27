@@ -65,3 +65,7 @@ app_add_comments:
 app_send_invitation:
     path : /invitation/send/{id}
     defaults:  { _controller: AppBundle:Friends:SendInvitation }
+
+app_fullcomment:
+    path : /fullcomment/{article_id}
+    defaults:  { _controller: AppBundle:Comment:FullComment }

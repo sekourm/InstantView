@@ -78,9 +78,9 @@
                                                 <input type="submit" class="submit_comment_home"/>
                                             </div>
                                         </form>
-                                        {% set break = false %}
                                         {% set count = 0 %}
-                                        {% for c in n.getCommentArticle if not break %}
+                                        {% for c in n.getCommentArticle %}
+                                            {% set size = n.getCommentArticle | length %}
                                             {% set count = count + 1 %}
                                             {% if count <= 2 %}
                                                 <div class="col-md-10 comment_box">
@@ -90,15 +90,10 @@
                                                     {{ c.getUserCommentId.getUsername }}<br/>
                                                     <span class="content_comment">{{ c.getContent }}</span>
                                                 </div>
-                                            {% else %}
+                                            {% elseif count == size %}
                                                 <div class="col-md-10 comment_box comment_plus">
-                                                    {% if count - 2 == 1 %}
-                                                        <a href="/fullcomment/{{ c.getId }}">{{ count - 2 }} commentaire ...</a>
-                                                    {% else %}
-                                                        <a href="/fullcomment/{{ c.getId }}">{{ count - 2 }} commentaires ...</a>
-                                                    {% endif %}
+                                                        <a href="/fullcomment/{{ n.id }}" class="show_all_comment">{{ count - 2 }} commentaires ...</a>
                                                 </div>
-                                                {% set break = true %}
                                             {% endif %}
                                         {% endfor %}
                                     </div>

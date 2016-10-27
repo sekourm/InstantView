@@ -61,13 +61,13 @@
                             </div>
 
                             <div class="panel-body">
-                                <p>Username : {{ info_user.username }}</p>
+                                <p><img src="{{ asset('/img/username.png') }}" alt="connected" class="user_info_img"/> {{ info_user.username }}</p>
                                 {% if info_user.isconnect == true %}
-                                    <p>connecter</p>
+                                    <p><img src="{{ asset('/img/connect.png') }}" alt="connected" class="user_info_img"/> connecter</p>
                                 {% elseif info_user.isconnect == false %}
-                                    <p>pas connecter</p>
+                                    <p><img src="{{ asset('/img/disconnect.png') }}" alt="disconnected" class="user_info_img"> Pas connecter</p>
                                 {% endif %}
-                                <p> derniere connexion : {{ info_user.LastConnexion|date("Y-m-d") }}</p>
+                                <p> Derniére connection : {{ info_user.LastConnexion|date("Y-m-d") }}</p>
                                 <p> Compte crée le : {{ info_user.CreatedAt|date('Y-m-d') }}</p>
                             </div>
                         </div>
@@ -228,7 +228,4 @@
 
     </div>
 
-
-    </div>
-    </div>
 {% endblock %}

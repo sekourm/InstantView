@@ -3,7 +3,7 @@
     {% block nav %}
         {% include '/Nav/nav.html.twig' %}
     {% endblock %}
-    <div class="content">
+    <div class="content content_album_color">
 
         <div class="width_button_album">
             <div class="button1">
@@ -15,21 +15,21 @@
         </div>
 
         <ul class="plugin_image inline_image profil_hide">
-            <li>
+            <li class="zoom-effect-container">
                 <img src="{{ user.getuserPhoto.getProfil }}"  alt="{{ user.username }}" class="height_width_album"/>
             </li>
             {% for n in user.getAlbumProfil %}
-                <li>
+                <li class="zoom-effect-container">
                     <img src="{{ n.getPhoto }}" alt="{{ user.username }}" class="height_width_album" />
                 </li>
             {% endfor %}
         </ul>
         <ul class="plugin_image inline_image couverture_hide">
-            <li>
+            <li class="zoom-effect-container">
                 <img src="{{ user.getuserPhoto.getCouverture }}" alt="{{ user.username }}" class="height_width_album"/>
             </li>
             {% for n in user.getAlbumCouverture %}
-                <li>
+                <li class="zoom-effect-container">
                     <img src="{{ n.getPhoto }}" alt="{{ user.username }}" class="height_width_album"/>
                 </li>
             {% endfor %}

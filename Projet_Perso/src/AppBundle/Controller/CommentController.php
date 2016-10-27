@@ -57,4 +57,16 @@ class CommentController extends Controller
 
         return $this->redirect('/home');
     }
+
+    public function FullCommentAction(Request $request, $article_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Articles')->findBy(array('id' => $article_id));
+
+        /*
+         * redirect after insert
+         */
+
+        return $this->render('Content/fullarticle.html.twig',array('AllArticles' => $article));
+    }
 }

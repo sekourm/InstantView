@@ -39,6 +39,8 @@ class ProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
         $session = $request->getSession();
         $created_at = new \DateTime("now");
+        $AlbumCouverture = new Album_couverture();
+        $AlbumPhoto = new Album_profil();
         /*
          * create an array for get all invitation of users
          */
@@ -85,6 +87,121 @@ class ProfileController extends Controller
          */
 
         $count_invitation = count($invitation);
+
+
+        $defaultData1 = array('message' => 'Type your message here');
+        $form1 = $this->createFormBuilder($defaultData1)
+            ->add('profil', FileType::class, array('attr' => array('placeholder' => 'profil'), 'label' => false))
+            ->getForm();
+        $form1->handleRequest($request);
+
+        /**
+         * check if the form is  submit for the profil picture and get the data input
+         */
+
+        if ($form1->isSubmitted() && $form1->isValid()) {
+            $defaultData1 = $form1->getData();
+            $profil = $form1["profil"]->getData();
+
+            /**
+             * check the extension, push the image into a folder to convert into base64,
+             */
+
+            $extension = $profil->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $profil->guessExtension();
+            $profil_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/Upload/';
+            $file = $profil->move($profil_path, $fileName);
+            $data = file_get_contents($file);
+            $base64 = 'data:image/' . $extension . ';base64,' . base64_encode($data);
+
+            /**
+             * save the data into the Profil Entity
+             */
+
+            $product = $this->getDoctrine()
+                ->getRepository('AppBundle\Entity\Photos')
+                ->findOneByphoto($user_id);
+            $product->setProfil($base64);
+            $em->flush();
+
+            /**
+             * save the data into the Profil Album entity
+             */
+
+            $created_at = new \DateTime("now");
+            $AlbumPhoto->setUsers($em->getReference('AppBundle\Entity\Users', $user_id));
+            $AlbumPhoto->setPhoto($base64);
+            $AlbumPhoto->setDate($created_at);
+            $AlbumPhoto->setActive(1);
+            $em->persist($AlbumPhoto);
+            $em->flush();
+
+            /**
+             * delete the picture that has been saved previously
+             */
+
+            $fs->remove(array($profil_path . $fileName));
+        }
+
+        /**
+         * create form builder for edit the album picture
+         */
+
+        $defaultData2 = array('message' => 'Type your message here');
+        $form2 = $this->createFormBuilder($defaultData2)
+            ->add('couverture', FileType::class, array('attr' => array('placeholder' => 'couverture'), 'label' => false))
+            ->getForm();
+        $form2->handleRequest($request);
+
+        /**
+         * check if the form is  submit for the album picture and get the data input
+         */
+
+        if ($form2->isSubmitted() && $form2->isValid()) {
+            $defaultData2 = $form2->getData();
+            $couverture = $form2["couverture"]->getData();
+
+            /**
+             * check the extension, push the image into a folder to convert into base64,
+             */
+
+            $extension = $couverture->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $couverture->guessExtension();
+            $profil_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/Upload/';
+            $file = $couverture->move($profil_path, $fileName);
+            $data = file_get_contents($file);
+            $base64 = 'data:image/' . $extension . ';base64,' . base64_encode($data);
+
+            /**
+             * save the data into the Album Entity
+             */
+
+            $product = $this->getDoctrine()
+                ->getRepository('AppBundle\Entity\Photos')
+                ->findOneByphoto($user_id);
+            $product->setCouverture($base64);
+            $em->flush();
+
+            /**
+             * save the data into the album Photo entity
+             */
+
+            $created_at = new \DateTime("now");
+            $AlbumCouverture->setUsers($em->getReference('AppBundle\Entity\Users', $user_id));
+            $AlbumCouverture->setPhoto($base64);
+            $AlbumCouverture->setDate($created_at);
+            $AlbumCouverture->setActive(1);
+            $em->persist($AlbumCouverture);
+            $em->flush();
+
+            /**
+             * delete the picture that has been saved previously
+             */
+
+            $fs->remove(array($profil_path . $fileName));
+        }
+
+
 
 
         /**
@@ -179,6 +296,8 @@ class ProfileController extends Controller
 
         return $this->render('Content/profile.html.twig', array('info_user' => $info_user,
             'friend1' => $friend1,
+            'form1' => $form1->createView(),
+            'form2' => $form2->createView(),
             'friend2' => $friend2,
             'nbr_friends' => $count_friends,
             'invitations' => $invitation,
@@ -190,13 +309,11 @@ class ProfileController extends Controller
 
     public function SearchAction($username)
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new GetSetMethodNormalizer());
+        /*
+         * get all data to the input search
+         */
 
-        $serializer = new Serializer($normalizers, $encoders);
-        $tab = [];
         $em = $this->getDoctrine()->getManager();
-
         $result = $em->getRepository("AppBundle:Users")->createQueryBuilder('o')
             ->where('o.username LIKE :username')
             ->setParameter('username', '%'.$username.'%')
@@ -208,6 +325,11 @@ class ProfileController extends Controller
         } else {
             $user = null;
         }
+
+        /*
+         * get a response to ajax script
+         */
+
         $response = new JsonResponse();
         $data = $response->setData(array('user' => $user));
         return $data ;
