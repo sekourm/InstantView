@@ -33,8 +33,6 @@ class ProfileController extends Controller
 {
     public function ShowAction(Request $request)
     {
-
-
         $fs = new Filesystem();
 
         $Articles = new Articles();
@@ -198,14 +196,13 @@ class ProfileController extends Controller
         $serializer = new Serializer($normalizers, $encoders);
         $tab = [];
         $em = $this->getDoctrine()->getManager();
-        /* $alluser = $em->getRepository('AppBundle:Users')->findBy(array('username' => '%'.$username.'%'));*/
+
         $result = $em->getRepository("AppBundle:Users")->createQueryBuilder('o')
             ->where('o.username LIKE :username')
             ->setParameter('username', '%'.$username.'%')
             ->getQuery()
             ->getArrayResult();
 
-       // dump($result);exit;
         if ($result) {
             $user = $result;
         } else {

@@ -68,6 +68,11 @@ class Users
      * @ORM\OneToMany(targetEntity="Invitations", mappedBy="user_invit_recever")
      */
     private $recever;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="user_comment_id")
+     */
+    private $comment;
     
     /**
      *
@@ -756,5 +761,38 @@ class Users
     public function getRecever()
     {
         return $this->recever;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comments $comment
+     * @return Users
+     */
+    public function addComment(\AppBundle\Entity\Comments $comment)
+    {
+        $this->comment[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comments $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comments $comment)
+    {
+        $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }
