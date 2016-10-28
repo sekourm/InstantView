@@ -27,52 +27,10 @@ class Articles
      */
     private $users;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @ORM\OneToMany(targetEntity="Comments", mappedBy="article_comment_id")
      */
     private $comment_article;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * @ORM\Column(name="content", type="text", length=4294967295)
@@ -335,5 +293,45 @@ class Articles
     public function getUpdatedAt()
     {
         return $this->updated_at;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comment_article = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comment_article
+     *
+     * @param \AppBundle\Entity\Comments $commentArticle
+     * @return Articles
+     */
+    public function addCommentArticle(\AppBundle\Entity\Comments $commentArticle)
+    {
+        $this->comment_article[] = $commentArticle;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment_article
+     *
+     * @param \AppBundle\Entity\Comments $commentArticle
+     */
+    public function removeCommentArticle(\AppBundle\Entity\Comments $commentArticle)
+    {
+        $this->comment_article->removeElement($commentArticle);
+    }
+
+    /**
+     * Get comment_article
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommentArticle()
+    {
+        return $this->comment_article;
     }
 }
