@@ -33,12 +33,47 @@ class Comments
 
     private $user_comment_id;
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> a67e5877f1a6d0722c7606c5b9647f2d83d0ce69
     /**
      * @ORM\ManyToOne(targetEntity="Articles", inversedBy="comment_article")
      * @ORM\JoinColumn(name="article_id",referencedColumnName="id", nullable=false)
      */
     private $article_comment_id;
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> a67e5877f1a6d0722c7606c5b9647f2d83d0ce69
     /**
      * @ORM\Column(name="active", type="boolean")
      */

@@ -1,5 +1,6 @@
 Projet_Perso/app/bootstrap.php.cache
 Projet_Perso/app/cache/*
+Projet_Perso/app/logs/*
 !Projet_Perso/app/cache/.gitkeep
 .idea/
 Projet_Perso/.idea
