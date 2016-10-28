@@ -15,13 +15,10 @@ $("document").ready(function() {
           liste.innerHTML =  " ";
         } else {
           for (var i = 0; i < data.user.length ;i++){
-            console.log(data.user[i].name);
-            $("#recherche ul").append("<li><a href='/friends/"+ data.user[i].id+"'>"+data.user[i].name + " " + data.user[i].username+"</a></li>");
+            $("#recherche ul").append("<li><hr/><a href='/profil/"+ data.user[i].id+"'>"+data.user[i].name + " " + data.user[i].username+"</a><hr/></li>");
           }
         }
-
       }
-
     });
     } else {
       liste.innerHTML =  " ";

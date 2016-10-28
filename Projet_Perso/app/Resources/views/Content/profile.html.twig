@@ -31,7 +31,6 @@
                 {% else %}
                     <li><a href="#">Ami 0</a></li>
                 {% endif %}
-                <li><a href="#">Amis en commun</a></li>
                 <li><a href="/show/showalbum">Photos</a></li>
                 {% if nbr_invitations > 0 %}
                     <li><a href="#" data-toggle="modal"
@@ -41,12 +40,13 @@
                 {% endif %}
             </ul>
         </div>
-<div style="position: absolute; z-index: 100000;margin-left:900px">
-    <a href="#" data-target="#myModalcouverture" data-toggle="modal">  <img src="http://s10.postimg.org/4rc0fv8jt/camera.png" height="50" width="50"/></a>
-</div>
-
-        <div style="position: absolute; z-index: 100000;margin-left:190px;margin-top: 313px">
-            <a href="#" data-target="#myModalprofil" data-toggle="modal"><img src="http://s10.postimg.org/4rc0fv8jt/camera.png" height="50" width="50"/></a>
+        <div style="position: absolute;z-index: 1;left: 72%;">
+            <a href="#" data-target="#myModalcouverture" data-toggle="modal"> <img
+                        src="http://s10.postimg.org/4rc0fv8jt/camera.png" height="50" width="50"/></a>
+        </div>
+        <div style="position: absolute; z-index: 1;left:33%;top: 39%">
+            <a href="#" data-target="#myModalprofil" data-toggle="modal"><img
+                        src="http://s10.postimg.org/4rc0fv8jt/camera.png" height="50" width="50"/></a>
         </div>
 
         <div class="">
@@ -59,12 +59,16 @@
                             </div>
 
                             <div class="panel-body">
+                                <p><img src="{{ asset('/img/username.png') }}" alt="connected"
+                                        class="user_info_img"/> {{ info_user.username }}</p>
                                 {% if info_user.isconnect == true %}
-                                    <p>connecter</p>
+                                    <p><img src="{{ asset('/img/connect.png') }}" alt="connected"
+                                            class="user_info_img"/> connecter</p>
                                 {% elseif info_user.isconnect == false %}
-                                    <p>pas connecter</p>
+                                    <p><img src="{{ asset('/img/disconnect.png') }}" alt="disconnected"
+                                            class="user_info_img"> Pas connecter</p>
                                 {% endif %}
-                                <p> derniere connexion : {{ info_user.LastConnexion|date("Y-m-d") }}</p>
+                                <p> Derniére connection : {{ info_user.LastConnexion|date("Y-m-d") }}</p>
                                 <p> Compte crée le : {{ info_user.CreatedAt|date('Y-m-d') }}</p>
                             </div>
 
@@ -98,8 +102,9 @@
                                         </li>
                                     {% endfor %}
                                     {% for n in friend2 %}
-                                        <li><a href="#"><img src="{{ n.userfriendone.getUserPhoto.profil }}"
-                                                             alt="profil image" height="50" width="50"/></a>
+                                        <li class="list"><a href="profil/{{ n.userfriendone.getId }}"><img
+                                                        src="{{ n.userfriendone.getUserPhoto.profil }}"
+                                                        alt="profil image" height="50" width="50"/></a>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -121,7 +126,6 @@
                                 <span class="pull-rights">
      Image/Video
   </span>
-
                             </div>
                             {{ form_widget(form3.title) }}
                             <input id="my_input" type="submit" value="Publier">
@@ -130,38 +134,37 @@
                         </form>
                     </div>
                     <div class="col-md-12 top-buffer">
-
-
                         {% for n in info_user.getArticles %}
-                            <div class="top-buff">
+                            <div class="each_post">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <a href="#"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"
-                                                         style="width: 90px;height: 80px"></a>
+                                        <a href="/profil/{{ n.getUsers.getId }}"><img
+                                                    src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image"
+                                                    style="width: 90px;height: 80px"></a>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="col-md-12">
                                             <p class="m_title"
-                                               style="font-size: 20px; font-weight: bold"> {{ info_user.username }} {{ info_user.lastname }}
+                                               style="font-size: 20px; font-weight: bold">{{ n.getUsers.username }} {{ n.getUsers.lastname }}
                                             </p>
                                         </div>
 
                                         <div class="col-md-12">
-                                            Publié le {{ n.CreatedAt|date('Y-m-d') }}
+                                            <p> Publié le {{ n.createdAt|date('Y-m-d') }}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p class="m_title" style="font-size: 20px">  {{ n.getTitle }}</p>
+                                        <p class="m_title"
+                                           style="font-size: 20px;text-align: center;margin-top: 10px;margin-bottom: 10px;">{{ n.title }}</p>
                                     </div>
                                     <div class="col-md-12">
                                         {% if n.type == 'image' %}
                                             <ul class="plugin_image">
                                                 <li><img alt="  {{ n.title }}" src="{{ n.content }}"
-                                                         style="height: 300px;width: 600px">
-                                                    <p class="text">:je suis la</p></li>
+                                                         style="height: 240px;width: 320px;margin-left: 144px;"></li>
                                             </ul>
                                         {% else %}
                                             <video style="height: 300px;width: 600px" controls>
@@ -171,26 +174,40 @@
                                         {% endif %}
 
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 form_box">
                                         <div class="col-md-1">
-
-
-                                            <a href="#"><img src="{{ info_user.getUserPhoto.profil }}"
-                                                             alt="profil image" style="width: 45px;height: 45px"></a>
-
+                                            <a href="/profil/{{ info_user.getId }}"><img src="{{ info_user.getUserPhoto.profil }}" alt="profil image"
+                                                                                         style="width: 45px;height: 45px;margin-top: 18px;"></a>
                                         </div>
                                         <div class="col-md-10">
-                                            <form>
+                                            <form action="/add/comment/{{ n.id }}">
                                                 <div class="form-group">
-                                                    <textarea class="form-control" id="comment_profile"></textarea>
+                                                <textarea class="form-control comment" required
+                                                          name="comment"></textarea>
+                                                    <input type="submit" class="submit_comment_profil"/>
                                                 </div>
                                             </form>
+                                            {% set count = 0 %}
+                                            {% for c in n.getCommentArticle %}
+                                                {% set size = n.getCommentArticle | length %}
+                                                {% set count = count + 1 %}
+                                                {% if count <= 2 %}
+                                                    <div class="col-md-10 comment_box">
+                                                        <a href="/profil/{{ c.getUserCommentId.getId }}">
+                                                            <img src="{{ c.getUserCommentId.getUserPhoto.profil }}" alt="profil image" style="width: 45px;height: 45px">
+                                                        </a>
+                                                        {{ c.getUserCommentId.getUsername }}<br/>
+                                                        <span class="content_comment">{{ c.getContent }}</span>
+                                                    </div>
+                                                {% elseif count == size %}
+                                                    <div class="col-md-10 comment_box comment_plus">
+                                                        <a href="/fullcomment/{{ n.id }}" class="show_all_comment">{{ count - 2 }} commentaires ...</a>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
-
-
                                     </div>
                                 </div>
-
                             </div>
                         {% endfor %}
                     </div>
@@ -240,8 +257,10 @@
                         <ul>
                             {% for n in invitations %}
                                 <li>
-                                    <img src="{{ n.getUserInvitSender.getUserPhoto.profil }}" alt="profil image"
-                                         class="invitation_img"/> {{ n.getUserInvitSender.getUsername }}
+                                    <a href="profil/{{ n.getUserInvitSender.getId }}"><img
+                                                src="{{ n.getUserInvitSender.getUserPhoto.profil }}"
+                                                alt="profil image" height="50" width="50"/></a>
+                                    {{ n.getUserInvitSender.getUsername }}
                                     <span class="pull-right">
                                              <a href="/accept/{{ n.getUserInvitSender.getId }}">Accepter</a>
                                              <a href="/refuse/{{ n.getUserInvitSender.getId }}">Refuser</a>
@@ -261,9 +280,6 @@
         </div>
     </div>
 
-
-
-
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
     <!-- Modal -->
@@ -274,17 +290,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modify Profil Picture</h4>
+                    <h4 class="modal-title">Nouvelle image de profile</h4>
                 </div>
                 <div class="modal-body">
-                    <h1>Adding a new profil</h1>
-                    <form method="post" {{form_enctype (form1)}}>
-
+                    <form method="post" {{ form_enctype (form1) }}>
                         {{ form_label(form1.profil) }}
                         {{ form_widget(form1.profil) }}
                         {{ form_row(form1._token) }}
-
-                        <button type="submit">profil</button>
+                        <button type="submit">Ajouter</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -295,10 +308,6 @@
         </div>
     </div>
 
-
-
-
-
     <div id="myModalcouverture" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -306,17 +315,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modify couverture Picture</h4>
+                    <h4 class="modal-title">Nouvelle image de couverture</h4>
                 </div>
                 <div class="modal-body">
-                    <h1>Adding a new couverture</h1>
-                    <form method="post" {{form_enctype (form2)}}>
-
+                    <form method="post" {{ form_enctype (form2) }}>
                         {{ form_label(form2.couverture) }}
                         {{ form_widget(form2.couverture) }}
                         {{ form_row(form2._token) }}
-
-                        <button type="submit">profil</button>
+                        <button type="submit">Ajouter</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -326,7 +332,5 @@
 
         </div>
     </div>
-
-
 
 {% endblock %}

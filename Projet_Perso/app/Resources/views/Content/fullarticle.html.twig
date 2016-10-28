@@ -1,0 +1,82 @@
+{% extends 'Default/base.html.twig' %}
+{% block body %}
+    {% block nav %}
+        {% include '/Nav/nav.html.twig' %}
+    {% endblock %}
+    <div class="content">
+        <div class="mur_user">
+            <div class="center">
+                <div class="publication">
+
+                    {% for n in AllArticles %}
+                        <div class="each_post">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="/profil/{{ n.getUsers.getId }}"><img
+                                                src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image"
+                                                style="width: 90px;height: 80px"></a>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="col-md-12">
+                                        <p class="m_title"
+                                           style="font-size: 20px; font-weight: bold">{{ n.getUsers.username }} {{ n.getUsers.lastname }}
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <p> Publié le {{ n.createdAt|date('Y-m-d') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="m_title"
+                                       style="font-size: 20px;text-align: center;margin-top: 10px;margin-bottom: 10px;">{{ n.title }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    {% if n.type == 'image' %}
+                                        <ul class="plugin_image">
+                                            <li><img alt="  {{ n.title }}" src="{{ n.content }}"
+                                                     style="height: 240px;width: 320px;margin-left: 144px;"></li>
+                                        </ul>
+                                    {% else %}
+                                        <video style="height: 300px;width: 600px" controls>
+                                            <source src='{{ asset("Upload/" ~ n.getUsers.getId ~ "/" ~ n.content) }}'
+                                                    type="video/mp4">
+                                        </video>
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-md-12 form_box">
+                                    <div class="col-md-1">
+                                        <a href="/profil/{{ n.getUsers.getId }}"><img src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image"
+                                                                                     style="width: 45px;height: 45px;margin-top: 18px;"></a>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <form action="/add/comment/{{ n.id }}">
+                                            <div class="form-group">
+                                                <textarea class="form-control comment" required
+                                                          name="comment"></textarea>
+                                                <input type="submit" class="submit_comment_home"/>
+                                            </div>
+                                        </form>
+                                        {% for c in n.getCommentArticle %}
+                                                <div class="col-md-10 comment_box">
+                                                    <a href="/profil/{{ c.getUserCommentId.getId }}">
+                                                        <img src="{{ c.getUserCommentId.getUserPhoto.profil }}" alt="profil image" style="width: 45px;height: 45px">
+                                                    </a>
+                                                    {{ c.getUserCommentId.getUsername }}<br/>
+                                                    <span class="content_comment">{{ c.getContent }}</span>
+                                                </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

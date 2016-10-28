@@ -33,4 +33,19 @@ class PhotoController extends Controller
 
         return $this->render('Content/album.html.twig', array('user' => $user));
     }
+
+
+    public function ShowAllAlbumActionUserAction(Request $request, $user_id)
+    {
+        /*
+         * Select all info of users with all join info
+         */
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:Users')->findOneBy(array('id' => $user_id));
+
+        return $this->render('Content/album.html.twig', array('user' => $user));
+    }
+
+
 }

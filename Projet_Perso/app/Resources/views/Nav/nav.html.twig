@@ -1,8 +1,7 @@
 <nav class="menu">
     <ul>
         <div class="menu_left">
-          {#   <!--<li><img src="{{ info_user.getUserPhoto.profil }}" alt="image profil" class="img_profil_nav"/></li><li><a href="#">{{ info_user.username }}</a></li>-->#}
-            <li><img src="" alt="image profil" class="img_profil_nav"/></li><li><a href="#">login</a></li>
+            <li><img src="{{ asset('/img/blog.jpg') }}" alt="image profil" class="img_profil_nav"/><span class="title_site">InstantView</span></li>
         </div>
         <div class="menu_right">
             <li><form><input type="search" id="search">
@@ -13,16 +12,11 @@
             </li>
             <li><a href="/home">Home</a></li>
             <li><a href="/profil">Profil</a></li>
-            <li><a href="#">Contact</a></li>
             <li><a href="{{ path('app_action_disconnect') }}">Logout</a></li>
         </div>
     </ul>
-    <div class="" id="">
-
+    <div id="recherche">
+        <ul class="liste" id="liste">
+        </ul>
     </div>
 </nav>
-<div id="recherche" style="position: absolute;width: 368px;margin-left: 758px">
-    <ul class="liste" id="liste">
-
-    </ul>
-</div>

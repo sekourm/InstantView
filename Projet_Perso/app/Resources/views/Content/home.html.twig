@@ -6,94 +6,101 @@
     <div class="content">
         <div class="mur_user">
             <div class="center">
-
                 <div class="publication">
-                    <div class="post">
+                    <div class="post_home">
                         <div class="top">
-                        <form method="post" id="enquiry" {{ form_enctype (form3) }}>
-
-                            {#  <div class="upload">
-                                     <ul>
-                                         <li><a href="#"><img src="{{ asset('img/photo.png') }}" alt="profil image"/></a>
-                                         </li>
-                                         <li><a href="#"><img src="{{ asset('img/video.png') }}" alt="profil image"/></a>
-                                         </li>
-                                     </ul>
-                                 </div>#}
-                            <div class="containers">
-  <span class="select-wrapper pull-left">
-      {{ form_label(form3.content) }}
-      {{ form_widget(form3.content) }}
-  </span>
-
-                                <span class="pull-rights">
-     Image/Video
-  </span>
-
-                            </div>
-                            {{ form_widget(form3.title) }}
-                            <input type="submit" value="Publier">
-
-                            {{ form_row(form3._token) }}
-                        </form>
-
-                    </div>
-                </div>
-    {% for n in AllArticles %}
-                    <div class="">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <a href="#"><img src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image" style="width: 90px;height: 80px"></a>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="col-md-12">
-                                    <p class="m_title" style="font-size: 20px; font-weight: bold">{{ n.getUsers.username }} {{ n.getUsers.lastname }}
-                                    </p>
+                            <form method="post" id="enquiry" {{ form_enctype (form3) }}>
+                                <div class="containers">
+                                    <span class="select-wrapper pull-left">
+                                        {{ form_label(form3.content) }}
+                                        {{ form_widget(form3.content) }}
+                                    </span>
+                                    <span class="pull-rights">
+                                        Image/Video
+                                    </span>
                                 </div>
+                                {{ form_widget(form3.title) }}
+                                <input type="submit" style="margin-right: -199px;margin-top: -69px;" value="Publier">
+                                {{ form_row(form3._token) }}
+                            </form>
+                        </div>
+                    </div>
+                    {% for n in AllArticles %}
+                        <div class="each_post">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="/profil/{{ n.getUsers.getId }}"><img
+                                                src="{{ n.getUsers.getUserPhoto.profil }}" alt="profil image"
+                                                style="width: 90px;height: 80px"></a>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="col-md-12">
+                                        <p class="m_title"
+                                           style="font-size: 20px; font-weight: bold">{{ n.getUsers.username }} {{ n.getUsers.lastname }}
+                                        </p>
+                                    </div>
 
+                                    <div class="col-md-12">
+                                        <p> Publié le {{ n.createdAt|date('Y-m-d') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-12">
-                                   <p> Publié le {{ n.createdAt|date('Y-m-d') }}</p>
+                                    <p class="m_title"
+                                       style="font-size: 20px;text-align: center;margin-top: 10px;margin-bottom: 10px;">{{ n.title }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    {% if n.type == 'image' %}
+                                        <ul class="plugin_image">
+                                            <li><img alt="  {{ n.title }}" src="{{ n.content }}"
+                                                     style="height: 240px;width: 320px;margin-left: 144px;"></li>
+                                        </ul>
+                                    {% else %}
+                                        <video style="height: 300px;width: 600px" controls>
+                                            <source src='{{ asset("Upload/" ~ n.getUsers.getId ~ "/" ~ n.content) }}'
+                                                    type="video/mp4">
+                                        </video>
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-md-12 form_box">
+                                    <div class="col-md-1">
+                                        <a href="/profil/{{ foto_user.getId }}"><img src="{{ foto_user.getUserPhoto.profil }}" alt="profil image"
+                                                         style="width: 45px;height: 45px;margin-top: 18px;"></a>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <form action="/add/comment/{{ n.id }}">
+                                            <div class="form-group">
+                                                <textarea class="form-control comment" required
+                                                          name="comment"></textarea>
+                                                <input type="submit" class="submit_comment_home"/>
+                                            </div>
+                                        </form>
+                                        {% set count = 0 %}
+                                        {% for c in n.getCommentArticle %}
+                                            {% set size = n.getCommentArticle | length %}
+                                            {% set count = count + 1 %}
+                                            {% if count <= 2 %}
+                                                <div class="col-md-10 comment_box">
+                                                    <a href="/profil/{{ c.getUserCommentId.getId }}">
+                                                        <img src="{{ c.getUserCommentId.getUserPhoto.profil }}" alt="profil image" style="width: 45px;height: 45px">
+                                                    </a>
+                                                    {{ c.getUserCommentId.getUsername }}<br/>
+                                                    <span class="content_comment">{{ c.getContent }}</span>
+                                                </div>
+                                            {% elseif count == size %}
+                                                <div class="col-md-10 comment_box comment_plus">
+                                                        <a href="/fullcomment/{{ n.id }}" class="show_all_comment">{{ count - 2 }} commentaires ...</a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="m_title" style="font-size: 20px">{{ n.title }}</p>
-                            </div>
-                            <div class="col-md-12">
-                                {% if n.type == 'image' %}
-                                    <ul class="plugin_image">
-                                        <li><img alt="  {{ n.title }}" src="{{ n.content }}" style="height: 300px;width: 600px"><p class="text">:je suis la</p></li>
-                                    </ul>
-                                {% else %}
-                                    <video style="height: 300px;width: 600px" controls>
-                                        <source src='{{ asset("Upload/" ~ n.getUsers.getId ~ "/" ~ n.content) }}' type="video/mp4">
-                                    </video>
-                                {% endif %}
-
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-1">
-
-
-                                    <a href="#"><img src="{{ foto_user.getUserPhoto.profil }}" alt="profil image" style="width: 45px;height: 45px"></a>
-
-                                </div>
-                                <div class="col-md-10">
-                                   <form>
-                                       <div class="form-group">
-                                           <textarea class="form-control" id="comment"></textarea>
-                                       </div>
-                                   </form>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-    {% endfor %}
+                    {% endfor %}
 
                 </div>
             </div>

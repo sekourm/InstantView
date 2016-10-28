@@ -51,11 +51,6 @@ class RegisterController extends Controller
             $lastname = $form["lastname"]->getData();
             $email = $form["email"]->getData();
 
-
-
-
-
-
             /**
              * set data for different date and role;
              */
@@ -102,11 +97,8 @@ class RegisterController extends Controller
             
             $profil_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/profil/profil.txt';
             $profil = file_get_contents($profil_path);
-
-
             $couverture_path = $directoryPath = $this->container->getParameter('kernel.root_dir') . '/../web/couverture/couverture.txt';
             $couverture = file_get_contents($couverture_path);
-            
             $photographie->setPhoto($em->getReference('AppBundle\Entity\Users', $id));
             $photographie->setProfil($profil);
             $photographie->setCouverture($couverture);

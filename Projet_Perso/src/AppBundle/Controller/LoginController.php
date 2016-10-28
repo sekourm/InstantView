@@ -62,18 +62,25 @@ class LoginController extends Controller
         if ($valide >= 1) {
 
             /**
-             * if the user is valide, start the session and redirect
+             * if the user is valide, start the session and redirect and update date connexion and connexion boolean
              */
 
             if ($user[0]->getActive() == 'true' && $user[0]->getRole() == '0') {
+
+                $date = new \DateTime("now");
+
+                $em = $this->getDoctrine()->getManager();
+                $product = $em->getRepository('AppBundle:Users')->find($user[0]->getId());
+                $product->setIsConnect(1);
+                $product->setLastConnexion($date);
+                $em->flush();
+
                 $session = $request->getSession();
                 $session->start();
                 $session->set('user_id', $user[0]->getId());
                 $url = $this->generateUrl('app_mur');
                 return $this->redirect($url);
-            }
-
-            /**
+            } /**
              * if the user is not active redirect with message
              */
 
@@ -94,11 +101,42 @@ class LoginController extends Controller
     }
 
 
-    public function Disconnect_LoginAction(Request $request){
+    public function Disconnect_LoginAction(Request $request)
+    {
+        /*
+         * get the id of users in session
+         */
+
+        $user_id = $this->get('session')->get('user_id');
+
+        /*
+         * get the date for last connexion
+         */
+
+        $date = new \DateTime("now");
+
+        /*
+         *  update the last connection date and if the user is connect
+         */
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AppBundle:Users')->find($user_id);
+        $product->setIsConnect(0);
+        $product->setLastConnexion($date);
+        $em->flush();
+
+        /*
+         * remove the session
+         */
 
         $session = $request->getSession();
-        $session->remove('user_id');
-         $url = $this->generateUrl('app_login');
+        $session->remove('user_id');;
+
+        /*
+         * redirect after deconnect
+         */
+
+        $url = $this->generateUrl('app_login');
         return $this->redirect($url);
     }
 }

@@ -50,11 +50,6 @@ class ArticleController extends Controller
         $foto_user = $em->getRepository('AppBundle:Users')->findOneBy( array('id' => $user_id));
 
 
-
-
-
-
-
         /**
          * create form builder for edit the profil picture
          */

@@ -27,6 +27,53 @@ class Articles
      */
     private $users;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comments", mappedBy="article_comment_id")
+     */
+    private $comment_article;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @ORM\Column(name="content", type="text", length=4294967295)
      */

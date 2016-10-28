@@ -33,8 +33,6 @@ class ProfileController extends Controller
 {
     public function ShowAction(Request $request)
     {
-
-
         $fs = new Filesystem();
 
         $Articles = new Articles();
@@ -311,25 +309,27 @@ class ProfileController extends Controller
 
     public function SearchAction($username)
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new GetSetMethodNormalizer());
+        /*
+         * get all data to the input search
+         */
 
-        $serializer = new Serializer($normalizers, $encoders);
-        $tab = [];
         $em = $this->getDoctrine()->getManager();
-        /* $alluser = $em->getRepository('AppBundle:Users')->findBy(array('username' => '%'.$username.'%'));*/
         $result = $em->getRepository("AppBundle:Users")->createQueryBuilder('o')
             ->where('o.username LIKE :username')
             ->setParameter('username', '%'.$username.'%')
             ->getQuery()
             ->getArrayResult();
 
-       // dump($result);exit;
         if ($result) {
             $user = $result;
         } else {
             $user = null;
         }
+
+        /*
+         * get a response to ajax script
+         */
+
         $response = new JsonResponse();
         $data = $response->setData(array('user' => $user));
         return $data ;

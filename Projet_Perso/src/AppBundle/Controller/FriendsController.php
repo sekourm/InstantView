@@ -27,8 +27,6 @@ class FriendsController extends Controller
 {
     public function ShowAction(Request $request,$id)
     {
-
-
         $fs = new Filesystem();
 
         $Articles = new Articles();
@@ -48,7 +46,7 @@ class FriendsController extends Controller
         $accessor = PropertyAccess::createPropertyAccessor();
 
         /*
-         * get the id of users in session
+         * get the id of users
          */
 
         $user_id = $id;
@@ -65,6 +63,36 @@ class FriendsController extends Controller
         $friend1 = $user->getFriendOne()->slice(0, 3);
         $friend2 = $user->getFriendTwo()->slice(0, 3);
         $count_friends = count($friend1) + count($friend2);
+
+
+        /*
+         * get the id of users in session
+         */
+
+        $user_id_sender = $this->get('session')->get('user_id');
+
+
+
+
+
+        /*
+         * detect if invitation as send
+         */
+
+        $invitation_user = $em->getRepository('AppBundle:Invitations')->findOneBy(array('user_invit_sender' => $user_id_sender, 'user_invit_recever' => $user_id));
+
+        if(method_exists($invitation_user, 'getResponse'))
+        {
+            $invitation_user = $invitation_user->getResponse();
+        }
+        else {
+            $invitation_user = "";
+        }
+
+
+
+
+
 
 
 
@@ -170,7 +198,6 @@ class FriendsController extends Controller
             return $this->redirect($request->server->get('HTTP_REFERER'));
         }
 
-
         /*
          * render view with all info
          */
@@ -183,7 +210,36 @@ class FriendsController extends Controller
             'nbr_invitations' => $count_invitation,
             'all_friend1' => $all_friend1,
             'all_friend2' => $all_friend2,
+            'invitation_user' => $invitation_user,
             'form3' => $form3->createView()));
+    }
+
+    public function SendInvitationAction(Request $request, $id)
+    {
+        /*
+         * get the id of users in session
+         */
+
+        $user_id = $this->get('session')->get('user_id');
+
+        /*
+         * save the invitation in database
+         */
+
+        $invitation = new Invitations();
+        $em = $this->getDoctrine()->getManager();
+        $invitation->setUserInvitSender($em->getReference('AppBundle\Entity\Users', $user_id));
+        $invitation->setUserInvitRecever($em->getReference('AppBundle\Entity\Users', $id));
+        $invitation->setResponse('attente');
+        $em->persist($invitation);
+        $em->flush();
+
+        /*
+         * redirect in profil
+         */
+
+        return $this->redirect($request->server->get('HTTP_REFERER'));
+
     }
 
 }

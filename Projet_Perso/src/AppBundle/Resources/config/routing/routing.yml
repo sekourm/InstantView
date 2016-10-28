@@ -35,9 +35,12 @@ app_action_couverture:
   defaults:  { _controller: AppBundle:Article:Action_couverture }
 
 app_show_album:
-    path : /show/showalbum
+    path : /show/showalbum/
     defaults:  { _controller: AppBundle:Photo:ShowAllAlbum }
 
+app_show_album_user:
+    path : /show/showalbumuser/{user_id}
+    defaults:  { _controller: AppBundle:Photo:ShowAllAlbumActionUser }
 
 app_refuse_invitation:
     path : /refuse/{id}
@@ -54,3 +57,15 @@ app_friends:
 app_users:
   path : /search/{username}
   defaults:  { _controller: AppBundle:Profile:Search }
+
+app_add_comments:
+  path : /add/comment/{article_id}
+  defaults:  { _controller: AppBundle:Comment:AddComment }
+
+app_send_invitation:
+    path : /invitation/send/{id}
+    defaults:  { _controller: AppBundle:Friends:SendInvitation }
+
+app_fullcomment:
+    path : /fullcomment/{article_id}
+    defaults:  { _controller: AppBundle:Comment:FullComment }
