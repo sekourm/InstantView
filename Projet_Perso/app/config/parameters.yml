@@ -7,6 +7,6 @@ parameters:
     database_password: root
     mailer_transport: gmail
     mailer_host: smtp.gmail.com
-    mailer_user: mennad.sekour@gmail.com
-    mailer_password: mennad69199416
+    mailer_user: xxxxxxx@gmail.com
+    mailer_password: eqrtfqdesgfdsg
     secret: db3fb20746f395a44d08e8465e7770bdf3b43c6d
